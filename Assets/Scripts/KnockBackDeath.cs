@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public abstract class KnockBackDeath : Enemy
 {
     protected new Rigidbody2D rigidbody2D;
     protected CollisionControl collisionControl;
+    protected List<SpriteRenderer> spriteRenderers;
     protected SpriteRenderer spriteRenderer;
     
     public sealed override void hit()
@@ -14,9 +16,11 @@ public abstract class KnockBackDeath : Enemy
 
         dead = true;
         gameObject.layer = LayerMask.NameToLayer("Unaffected");
-        
-        spriteRenderer.material.SetFloat("_Flashing", 1f);
-        spriteRenderer.material.SetColor("Colour", new Color(1f, 1f, 1f, 0.75f));
+
+        foreach (SpriteRenderer i in spriteRenderers) {
+            i.material.SetFloat("_Flashing", 1f);
+            i.material.SetColor("Colour", new Color(1f, 1f, 1f, 0.75f));
+        }
         transform.localScale = new Vector3(1.5f, 1.5f, 1f);
         Invoke("deadSprite", 0.1f);
 
@@ -39,8 +43,11 @@ public abstract class KnockBackDeath : Enemy
 
     private void deadSprite ()
     {
-        spriteRenderer.material.SetFloat("_Flashing", 0f);
-        spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        foreach (SpriteRenderer i in spriteRenderers)
+        {
+            i.material.SetFloat("_Flashing", 0f);
+            i.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        }
         transform.localScale = Vector3.one;
     }
 
@@ -49,6 +56,11 @@ public abstract class KnockBackDeath : Enemy
         rigidbody2D = GetComponent<Rigidbody2D>();
         collisionControl = GetComponent<CollisionControl>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        spriteRenderers = new List<SpriteRenderer>();
+
+        spriteRenderers.AddRange(GetComponentsInChildren<SpriteRenderer>().ToList());
+
     }
 
     // Start is called before the first frame update

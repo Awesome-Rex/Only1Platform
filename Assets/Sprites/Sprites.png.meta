@@ -44,6 +44,9 @@ TextureImporter:
   - first:
       213: 7867615573756668635
     second: Tracker
+  - first:
+      213: 4450275912509694416
+    second: Ghost
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -417,6 +420,27 @@ TextureImporter:
       bones: []
       spriteID: 56c05a0e77567b843a7ed531be78d9da
       internalID: 7867615573756668635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 1344
+        width: 384
+        height: 384
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01c25af20f4dbeb48b9048372d362b33
+      internalID: 4450275912509694416
       vertices: []
       indices: 
       edges: []

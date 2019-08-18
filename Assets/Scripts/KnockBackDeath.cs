@@ -17,6 +17,10 @@ public abstract class KnockBackDeath : Enemy
         dead = true;
         gameObject.layer = LayerMask.NameToLayer("Unaffected");
 
+        if (GetComponent<Animator>() != null)
+        {
+            GetComponent<Animator>().enabled = false;
+        }
         foreach (SpriteRenderer i in spriteRenderers) {
             i.material.SetFloat("_Flashing", 1f);
             i.material.SetColor("Colour", new Color(1f, 1f, 1f, 0.75f));

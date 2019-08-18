@@ -68,4 +68,15 @@ public class Tools
 
         function();
     }
+
+    public static float ReturnIfZero (float num)
+    {
+        if (num >= 0)
+        {
+            return num;
+        } else
+        {
+            return 0;
+        }
+    }
 }

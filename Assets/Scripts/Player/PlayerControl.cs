@@ -274,8 +274,8 @@ public class PlayerControl : MonoBehaviour
                     GetComponentInChildren<Collider2D>().gameObject.layer = LayerMask.NameToLayer("Player");
 
                     ChromaticAberration chrom;
-                    GameplayComponents.main.postProcessing.profile.TryGetSettings<ChromaticAberration>(out chrom);
-                    chrom.intensity = new FloatParameter { value = 0.1f };
+                    GameplayComponents.main.postProcessing.profile.TryGetSettings(out chrom);
+                    chrom.intensity.value = 0.1f;
                 }
 
                 //canWallGrab = true;
@@ -304,8 +304,8 @@ public class PlayerControl : MonoBehaviour
                     GetComponentInChildren<Collider2D>().gameObject.layer = LayerMask.NameToLayer("Player");
 
                     ChromaticAberration chrom;
-                    GameplayComponents.main.postProcessing.profile.TryGetSettings<ChromaticAberration>(out chrom);
-                    chrom.intensity = new FloatParameter { value = 0.1f };
+                    GameplayComponents.main.postProcessing.profile.TryGetSettings(out chrom);
+                    chrom.intensity.value = 0.1f;
                 }
 
                 if (wallGrabDetectL.collider != null)
@@ -362,8 +362,8 @@ public class PlayerControl : MonoBehaviour
             canWallGrab = true;
 
             ChromaticAberration chrom;
-            GameplayComponents.main.postProcessing.profile.TryGetSettings<ChromaticAberration>(out chrom);
-            chrom.intensity = new FloatParameter { value = 0.75f };
+            GameplayComponents.main.postProcessing.profile.TryGetSettings(out chrom);
+            chrom.intensity.value = 0.75f;
 
             rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 

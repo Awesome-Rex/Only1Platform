@@ -53,6 +53,9 @@ TextureImporter:
   - first:
       213: -7686692139785606271
     second: BlackHole
+  - first:
+      213: -3269255642767607031
+    second: StraightPlatformOutline
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -183,7 +186,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 224
-        y: 1368
+        y: 1384
         width: 512
         height: 16
       alignment: 0
@@ -489,6 +492,27 @@ TextureImporter:
       bones: []
       spriteID: e0838a9cea19d354a83f4c323d61c1ef
       internalID: -7686692139785606271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StraightPlatformOutline
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 1344
+        width: 530
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e67497d745884b4193e187caa873919
+      internalID: -3269255642767607031
       vertices: []
       indices: 
       edges: []

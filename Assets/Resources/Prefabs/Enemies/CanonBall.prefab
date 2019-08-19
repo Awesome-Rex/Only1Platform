@@ -29,6 +29,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dead: 0
+  damage: 1
   distance: 20
   speed: 10
 --- !u!1001 &8140460711318947043

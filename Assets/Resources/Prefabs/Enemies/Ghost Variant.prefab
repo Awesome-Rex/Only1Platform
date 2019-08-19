@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dead: 0
+  damage: 1
 --- !u!1001 &4122194515571616332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58,7 +59,7 @@ PrefabInstance:
     - target: {fileID: 5977727436602110048, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}
       propertyPath: m_Name
-      value: Ghost
+      value: Ghost Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5977727436602110055, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}

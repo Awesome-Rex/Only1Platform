@@ -178,19 +178,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16666667
---- !u!114 &1010234735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5114046514574007688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02ec1274071c44f48aebea961614a804, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dead: 0
 --- !u!95 &1010234736
 Animator:
   serializedVersion: 3
@@ -210,6 +197,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1010234735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5114046514574007688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ec1274071c44f48aebea961614a804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dead: 0
+  damage: 1
 --- !u!1001 &1444979671791070696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 5977727436602110048, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}
       propertyPath: m_Name
-      value: Hiver
+      value: Hiver Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5977727436602110055, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}

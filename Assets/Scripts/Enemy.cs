@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     public bool dead;
+    public float damage;
 
     public abstract void hit();
 

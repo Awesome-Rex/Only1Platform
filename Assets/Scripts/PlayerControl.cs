@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -271,6 +272,10 @@ public class PlayerControl : MonoBehaviour
                 {
                     damaged = false;
                     GetComponentInChildren<Collider2D>().gameObject.layer = LayerMask.NameToLayer("Player");
+
+                    ChromaticAberration chrom;
+                    GameplayComponents.main.postProcessing.profile.TryGetSettings<ChromaticAberration>(out chrom);
+                    chrom.intensity = new FloatParameter { value = 0.1f };
                 }
 
                 //canWallGrab = true;
@@ -297,6 +302,10 @@ public class PlayerControl : MonoBehaviour
                 {
                     damaged = false;
                     GetComponentInChildren<Collider2D>().gameObject.layer = LayerMask.NameToLayer("Player");
+
+                    ChromaticAberration chrom;
+                    GameplayComponents.main.postProcessing.profile.TryGetSettings<ChromaticAberration>(out chrom);
+                    chrom.intensity = new FloatParameter { value = 0.1f };
                 }
 
                 if (wallGrabDetectL.collider != null)
@@ -351,6 +360,10 @@ public class PlayerControl : MonoBehaviour
             jumping = true;
             landable = false;
             canWallGrab = true;
+
+            ChromaticAberration chrom;
+            GameplayComponents.main.postProcessing.profile.TryGetSettings<ChromaticAberration>(out chrom);
+            chrom.intensity = new FloatParameter { value = 0.75f };
 
             rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 

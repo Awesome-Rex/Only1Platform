@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameplayComponents : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GameplayComponents : MonoBehaviour
     public Animation platformGhostZone;
 
     public GameObject gridGhost;
+
+    public PostProcessVolume postProcessing;
 
     private void Awake()
     {

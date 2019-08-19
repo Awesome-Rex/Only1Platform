@@ -59,6 +59,9 @@ public class Platform : MonoBehaviour
         if (health.health < health.maxHealth && !health.dead)
         {
             health.health += (10f / 2f);
+
+            sprite.color = new Color(1f, 1f, 1f, health.health / 10f);
+            outline.color = new Color(1f, 1f, 1f, 10f - (health.health / 10f));
         }
 
         if (health.dead)

@@ -54,10 +54,10 @@ public class PlayerControl : MonoBehaviour
 
             if (wallDir == Tools.HDirection.Left)
             {
-                wallDetect = Physics2D.BoxCast(transform.position + new Vector3(-0.5f - ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, 1 << LayerMask.NameToLayer("Platform"));
+                wallDetect = Physics2D.BoxCast(transform.position + new Vector3(-0.5f - ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
             } else if (wallDir == Tools.HDirection.Right)
             {
-                wallDetect = Physics2D.BoxCast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, 1 << LayerMask.NameToLayer("Platform"));
+                wallDetect = Physics2D.BoxCast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
             }
         } while (wallDetect.collider != null);
         
@@ -122,14 +122,14 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D platformDetect = Physics2D.BoxCast(transform.position + new Vector3(0f, -0.5f - ((1f / 12f) / 2f), 0f), new Vector2(1f - (4f / 192f), (16f / 192f) - (4f / 192f)), 0f, Vector2.zero, 0f, 1 << LayerMask.NameToLayer("Platform"));
+        RaycastHit2D platformDetect = Physics2D.BoxCast(transform.position + new Vector3(0f, -0.5f - ((1f / 12f) / 2f), 0f), new Vector2(1f - (4f / 192f), (16f / 192f) - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
         /*if (platformDetect.collider != null && platformDetect.collider.transform.rotation.eulerAngles.z != 0f)
         {
             platformDetect = new RaycastHit2D();
         }*/
 
-        RaycastHit2D wallGrabDetectR = Physics2D.BoxCast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, 1 << LayerMask.NameToLayer("Platform"));
-        RaycastHit2D wallGrabDetectL = Physics2D.BoxCast(transform.position + new Vector3(-0.5f - ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, 1 << LayerMask.NameToLayer("Platform"));
+        RaycastHit2D wallGrabDetectR = Physics2D.BoxCast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
+        RaycastHit2D wallGrabDetectL = Physics2D.BoxCast(transform.position + new Vector3(-0.5f - ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
 
 
         if (Input.GetKey(KeyCode.A) && !wallJumpRestrict && !(wallGrabDetectL.collider/* != null && (wallGrabDetectL.collider.transform.rotation.eulerAngles.z != 0f)*/))

@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dead: 0
-  damage: 1
+  damage: 5
   distance: 20
   speed: 5
 --- !u!1001 &6210054237841308626
@@ -146,6 +146,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -50.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977727436602110053, guid: cff3deceab97cd24b968eb19eb5bb4f1,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5977727436602110052, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}

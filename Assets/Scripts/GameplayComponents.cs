@@ -17,6 +17,10 @@ public class GameplayComponents : MonoBehaviour
 
     public PostProcessVolume postProcessing;
 
+
+    public Sprite platformOutlineSprite;
+    public Sprite platformInvincibleOutlineSprite;
+
     private void Awake()
     {
         main = this;

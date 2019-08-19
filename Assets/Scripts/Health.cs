@@ -24,7 +24,7 @@ public class Health : MonoBehaviour
 
             if (_health > 0)
             {
-                dead = true;
+                dead = false;
             }
         }
     }

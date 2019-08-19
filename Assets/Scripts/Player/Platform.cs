@@ -5,6 +5,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     public float regen;
+    public bool regenerating;
 
     private SpriteRenderer sprite;
     private SpriteRenderer outline;
@@ -14,24 +15,30 @@ public class Platform : MonoBehaviour
     IEnumerator regenerate ()
     {
         regen = 0f;
+        regenerating = true;
 
         while (regen < health.maxHealth)
         {
             yield return null;
 
-            regen += (10f / 3f) * Time.deltaTime;
+            regen += (10f / 5f) * Time.deltaTime;
         }
 
         health.health = health.maxHealth;
         gameObject.layer = LayerMask.NameToLayer("Platform");
 
-        sprite.color = new Color(1f, 1f, 1f, health.health / 10f);
-        outline.color = new Color(1f, 1f, 1f, 10f - (health.health / 10f));
+        outline.sprite = GameplayComponents.main.platformOutlineSprite;
+
+        sprite.color = new Color(1f, 1f, 1f, 1f);
+        outline.color = new Color(1f, 1f, 1f, 0f);
+
+        regenerating = false;
     }
 
     private void Awake()
     {
         regen = 0f;
+        regenerating = false;
 
         sprite = GetComponent<SpriteRenderer>();
         outline = transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -48,25 +55,33 @@ public class Platform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (collisionControl.collisionEnter && Tools.ExistsTag(collisionControl.collisionEnterCol, "Enemy"))
-        {
-            health.health -= Tools.FindWithTag(collisionControl.collisionEnterCol, "Enemy").GetComponent<Enemy>().damage;
+        if (!health.dead) {
+            if (collisionControl.collisionEnter && Tools.ExistsTag(collisionControl.collisionEnterCol, "Enemy"))
+            {
+                foreach (GameObject hit in collisionControl.collisionEnterCol) {
+                    if (hit.tag == "Enemy") {
+                        health.health -= hit.GetComponent<Enemy>().damage;
+                    }
+                }
+            }
+
+            if (health.health < health.maxHealth)
+            {
+                health.health += (10f / 3f) * Time.deltaTime;
+            }
 
             sprite.color = new Color(1f, 1f, 1f, health.health / 10f);
             outline.color = new Color(1f, 1f, 1f, 10f - (health.health / 10f));
         }
 
-        if (health.health < health.maxHealth && !health.dead)
+        if (health.dead && !regenerating)
         {
-            health.health += (10f / 2f);
+            gameObject.layer = LayerMask.NameToLayer("Invincible");
 
-            sprite.color = new Color(1f, 1f, 1f, health.health / 10f);
-            outline.color = new Color(1f, 1f, 1f, 10f - (health.health / 10f));
-        }
+            outline.sprite = GameplayComponents.main.platformInvincibleOutlineSprite;
 
-        if (health.dead)
-        {
-            gameObject.layer = LayerMask.NameToLayer("Invinsible");
+            sprite.color = new Color(1f, 1f, 1f, 0f);
+            outline.color = new Color(1f, 1f, 1f, 1f);
 
             StartCoroutine(regenerate());
         }

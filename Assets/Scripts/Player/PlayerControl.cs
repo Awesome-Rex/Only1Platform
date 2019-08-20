@@ -398,5 +398,10 @@ public class PlayerControl : MonoBehaviour
             rigidbody2D.gravityScale = 1f;
 
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject.Find("Square").transform.position = Tools.RandomPolygonPosition(GameObject.Find("LevelBoundaries").GetComponent<PolygonCollider2D>().points);
+        }
     }
 }

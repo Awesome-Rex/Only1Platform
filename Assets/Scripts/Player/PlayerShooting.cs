@@ -59,6 +59,7 @@ public class PlayerShooting : MonoBehaviour
 
         for (float i = -(angle / 2f); i < (angle / 2f) + 5f; i += 5f)
         {
+            Physics2D.queriesHitTriggers = false;
             if (i <= angle / 2f) {
                 enemyDetect = Physics2D.Raycast(transform.position, (shootZone.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, shootZone.transform.rotation.eulerAngles.z + i))) * Vector3.right, distance, (1 << LayerMask.NameToLayer("Enemy")) | (1 << LayerMask.NameToLayer("Platform")));
                 
@@ -66,6 +67,7 @@ public class PlayerShooting : MonoBehaviour
             {
                 enemyDetect = Physics2D.Raycast(transform.position, (shootZone.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, shootZone.transform.rotation.eulerAngles.z + angle / 2f))) * Vector3.right, distance, (1 << LayerMask.NameToLayer("Enemy")) | (1 << LayerMask.NameToLayer("Platform")));
             }
+            Physics2D.queriesHitTriggers = true;
 
             if (enemyDetect.collider != null/* && !detectedEnemies.Contains(enemyDetect)*/ && enemyDetect.collider.gameObject.tag == "Enemy")
             {

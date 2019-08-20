@@ -57,6 +57,70 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6666667, y: 0.6666667}
   m_EdgeRadius: 0
+--- !u!66 &4564115463304468581
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046427678955670120}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 1
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1201005496456883661}
+    m_ColliderPaths:
+    - - X: 4999971
+        Y: -1666666
+      - X: 4999971
+        Y: 1666666
+      - X: 0
+        Y: 1666637
+      - X: 29
+        Y: -1666666
+  - m_Collider: {fileID: 48974749299164111}
+    m_ColliderPaths:
+    - - X: 3333304
+        Y: -3333333
+      - X: 3333304
+        Y: 3333333
+      - X: -3333333
+        Y: 3333304
+      - X: -3333304
+        Y: -3333333
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 0.3333275, y: -0.3333333}
+      - {x: 0.3333333, y: -0.1666666}
+      - {x: 0.4999971, y: -0.1666637}
+      - {x: 0.49999422, y: 0.1666666}
+      - {x: 0.3333304, y: 0.1666685}
+      - {x: 0.3333275, y: 0.3333333}
+      - {x: -0.3333333, y: 0.3333275}
+      - {x: -0.3333275, y: -0.3333333}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.000005
+--- !u!114 &537388613932772036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4046427678955670120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b640bf0ed5155b428b5386735dc3b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dead: 0
+  damage: 3.34
 --- !u!1 &5757310589958798948
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,70 +178,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.33333334}
   m_EdgeRadius: 0
---- !u!114 &537388613932772036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4046427678955670120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b640bf0ed5155b428b5386735dc3b2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dead: 0
-  damage: 3.34
---- !u!66 &4564115463304468581
-CompositeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4046427678955670120}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_GeometryType: 1
-  m_GenerationType: 0
-  m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1201005496456883661}
-    m_ColliderPaths:
-    - - X: 4999971
-        Y: -1666666
-      - X: 4999971
-        Y: 1666666
-      - X: 0
-        Y: 1666637
-      - X: 29
-        Y: -1666666
-  - m_Collider: {fileID: 48974749299164111}
-    m_ColliderPaths:
-    - - X: 3333304
-        Y: -3333333
-      - X: 3333304
-        Y: 3333333
-      - X: -3333333
-        Y: 3333304
-      - X: -3333304
-        Y: -3333333
-  m_CompositePaths:
-    m_Paths:
-    - - {x: 0.3333275, y: -0.3333333}
-      - {x: 0.3333333, y: -0.1666666}
-      - {x: 0.4999971, y: -0.1666637}
-      - {x: 0.49999422, y: 0.1666666}
-      - {x: 0.3333304, y: 0.1666685}
-      - {x: 0.3333275, y: 0.3333333}
-      - {x: -0.3333333, y: 0.3333275}
-      - {x: -0.3333275, y: -0.3333333}
-  m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.000005
 --- !u!1001 &7697474087742896648
 PrefabInstance:
   m_ObjectHideFlags: 0

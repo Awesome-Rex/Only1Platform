@@ -7,6 +7,7 @@ TagManager:
   - Platform
   - Enemy
   - Bullet
+  - LevelBoundaries
   layers:
   - Default
   - TransparentFX
@@ -41,6 +42,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: LevelArea
+    uniqueID: 323054775
+    locked: 0
+  - name: Dead
+    uniqueID: 721026947
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemies
+    uniqueID: 2206183307
+    locked: 0
+  - name: Player
+    uniqueID: 3908453601
     locked: 0

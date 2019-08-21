@@ -209,6 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ec1274071c44f48aebea961614a804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnMethod: {fileID: 4324777163471331799, guid: 758bf23a70c90d449ba9e73d4590e7dc,
+    type: 3}
   dead: 0
   damage: 2.5
 --- !u!1001 &1444979671791070696

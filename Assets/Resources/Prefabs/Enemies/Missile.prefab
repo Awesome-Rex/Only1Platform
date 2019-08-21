@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7559227403ef21a459e98a54371b4f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnMethod: {fileID: 7077445871922346763, guid: fb51da2cef72fe4419d3071bb5eff929,
+    type: 3}
   dead: 0
   damage: 3.34
   distance: 20

@@ -31,7 +31,7 @@ MonoBehaviour:
   dead: 0
   damage: 1
   distance: 20
-  speed: 10
+  speed: 7.5
 --- !u!1001 &8140460711318947043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47,12 +47,12 @@ PrefabInstance:
     - target: {fileID: 5977727436602110055, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 86.18811
+      value: -10.8965025
       objectReference: {fileID: 0}
     - target: {fileID: 5977727436602110055, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -39.925846
+      value: 305.76984
       objectReference: {fileID: 0}
     - target: {fileID: 5977727436602110055, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}
@@ -72,12 +72,12 @@ PrefabInstance:
     - target: {fileID: 5977727436602110055, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.9718914
+      value: -0.6905397
       objectReference: {fileID: 0}
     - target: {fileID: 5977727436602110055, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.23542973
+      value: 0.72329456
       objectReference: {fileID: 0}
     - target: {fileID: 5977727436602110055, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}
@@ -102,6 +102,11 @@ PrefabInstance:
     - target: {fileID: 5977727436602110053, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}
       propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977727436602110053, guid: cff3deceab97cd24b968eb19eb5bb4f1,
+        type: 3}
+      propertyPath: m_UseAutoMass
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5977727436602110052, guid: cff3deceab97cd24b968eb19eb5bb4f1,

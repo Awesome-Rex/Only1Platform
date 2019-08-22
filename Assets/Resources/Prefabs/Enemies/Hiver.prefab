@@ -209,8 +209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ec1274071c44f48aebea961614a804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnMethod: {fileID: 4324777163471331799, guid: 758bf23a70c90d449ba9e73d4590e7dc,
-    type: 3}
   dead: 0
   damage: 2.5
 --- !u!1001 &1444979671791070696
@@ -223,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 5977727436602110048, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}
       propertyPath: m_Name
-      value: Hiver Variant
+      value: Hiver
       objectReference: {fileID: 0}
     - target: {fileID: 5977727436602110055, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}
@@ -283,6 +281,11 @@ PrefabInstance:
     - target: {fileID: 5977727436602110053, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}
       propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977727436602110053, guid: cff3deceab97cd24b968eb19eb5bb4f1,
+        type: 3}
+      propertyPath: m_UseAutoMass
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:

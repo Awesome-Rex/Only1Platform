@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Tools
 {
@@ -77,6 +78,70 @@ public class Tools
         } else
         {
             return 0;
+        }
+    }
+
+    public static void ReplaceGameObject(GameObject target, GameObject result)
+    {
+        Transform parent = target.transform.parent;
+        List<Transform> children = target.transform.GetComponentsInChildren<Transform>().ToList();
+        children.Remove(target.transform);
+
+        foreach (Transform child in children)
+        {
+            child.SetParent(parent);
+        }
+
+        target.transform.SetParent(null);
+
+        GameObject newOriginal = Object.Instantiate(result);
+
+        newOriginal.transform.SetParent(parent);
+
+        foreach (Transform child in children)
+        {
+            child.SetParent(newOriginal.transform);
+        }
+
+        Object.Destroy(target);
+    }
+
+    public static void ReplaceGameObjectFamily(GameObject targetParent, GameObject[] targetChildren, GameObject result)
+    {
+        List<GameObject> placeHolders = new List<GameObject>();
+        placeHolders.Add(targetParent);
+        placeHolders.AddRange(targetChildren.ToList());
+
+        Transform grandParent = null;
+        List<Transform> grandChildren = new List<Transform>();
+
+        foreach (GameObject placeHolder in placeHolders) {
+            Transform parent = placeHolder.transform.parent;
+            List<Transform> children = placeHolder.transform.GetComponentsInChildren<Transform>().ToList();
+            children.Remove(placeHolder.transform);
+
+            grandParent = parent;
+            grandChildren = children;
+
+            foreach (Transform child in children)
+            {
+                child.SetParent(parent);
+            }
+
+            placeHolder.transform.SetParent(null);
+
+            
+
+            Object.Destroy(placeHolder);
+        }
+
+        GameObject newOriginal = Object.Instantiate(result);
+
+        newOriginal.transform.SetParent(grandParent);
+
+        foreach (Transform child in grandChildren)
+        {
+            child.SetParent(newOriginal.transform);
         }
     }
 
@@ -178,5 +243,49 @@ public class Tools
         Debug.Log(definedTriangle.points[0].ToString() + definedTriangle.points[1].ToString() + definedTriangle.points[2].ToString());
 
         return Tools.RandomTrianglePosition(definedTriangle);
+    }
+
+    public struct Line
+    {
+        public Vector2[] points;
+
+        public float distance;
+
+        public Line(Vector2[] points)
+        {
+            this.points = points;
+            this.distance = Vector2.Distance(points[0], points[1]);
+        }
+    }
+
+    public static Vector3 RandomEdgePosition (Vector2[] points)
+    {
+        List<Line> lines = new List<Line>();
+
+        float totalDistance = 0f;
+
+        for (int i = 0; i < points.Length - 1; i++)
+        {
+            lines.Add(new Line(new Vector2[] { points[i], points[i + 1] }));
+
+            totalDistance += lines[lines.Count - 1].distance;
+        }
+
+        float linePosition = Random.Range(0f, totalDistance + 0.01f);
+
+        float currentDistance = 0f;
+        for (int i = 0; i < lines.Count; i++)
+        {
+            if (currentDistance < linePosition && currentDistance + lines[i].distance > linePosition)
+            {
+
+                return Vector3.Lerp(lines[i].points[0], lines[i].points[1], (linePosition - currentDistance) / lines[i].distance);
+
+            }
+
+            currentDistance += lines[i].distance;
+        }
+
+        return new Vector3();
     }
 }

@@ -119,8 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b640bf0ed5155b428b5386735dc3b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnMethod: {fileID: 154274790566693188, guid: 29b1ce262a2c2ee47accbe3fa6f3f151,
-    type: 3}
   dead: 0
   damage: 3.34
 --- !u!1 &5757310589958798948
@@ -251,6 +249,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977727436602110053, guid: cff3deceab97cd24b968eb19eb5bb4f1,
+        type: 3}
+      propertyPath: m_UseAutoMass
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5977727436602110052, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}

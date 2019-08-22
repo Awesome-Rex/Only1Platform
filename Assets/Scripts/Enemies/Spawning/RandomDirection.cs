@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomDirection : MonoBehaviour
+public class RandomDirection : SpawnSetting
 {
-    // Start is called before the first frame update
-    void Start()
+    public sealed override void change(GameObject target)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        target.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, Random.Range(0f, 360f)));
     }
 }

@@ -361,7 +361,7 @@ public class PlayerControl : MonoBehaviour
             (damaged && collisionControl.collisionEnter && Tools.ExistsTag(collisionControl.collisionEnterCol, "LevelBoundaries"))
         )
         {
-            Debug.Log("Player got hit!");
+            //Debug.Log("Player got hit!");
 
             jumping = true;
             canJumpHold = false;
@@ -399,9 +399,10 @@ public class PlayerControl : MonoBehaviour
 
         }
 
-        /*if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject.Find("Square").transform.position = Tools.RandomPolygonPosition(GameObject.Find("LevelBoundaries").GetComponent<PolygonCollider2D>().points);
-        }*/
+            //GameObject.Find("Square").transform.position = Tools.RandomPolygonPosition(GameObject.Find("LevelBoundaries").GetComponent<PolygonCollider2D>().points);
+            StartCoroutine(Spawnable.spawnEnemy((Resources.Load("Prefabs/Enemies/EnemyCombinations/Test") as GameObject).GetComponent<Spawnable>()));
+        }
     }
 }

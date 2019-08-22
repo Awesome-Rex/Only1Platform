@@ -15,11 +15,16 @@ public class GameplayComponents : MonoBehaviour
 
     public GameObject gridGhost;
 
-    public PostProcessVolume postProcessing;
+    public EdgeCollider2D levelBoundariesEdge;
+    public PolygonCollider2D levelBoundariesFill;
 
+    public PostProcessVolume postProcessing;
 
     public Sprite platformOutlineSprite;
     public Sprite platformInvincibleOutlineSprite;
+
+    public PlaceHolder warning;
+    public PlaceHolder blank;
 
     private void Awake()
     {

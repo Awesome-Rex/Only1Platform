@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BorderPosition : MonoBehaviour
+public sealed class BorderPosition : SpawnSetting
 {
-    // Start is called before the first frame update
-    void Start()
+    public sealed override void change(GameObject target)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        target.transform.position = Tools.RandomEdgePosition(GameplayComponents.main.levelBoundariesEdge.points);
     }
 }

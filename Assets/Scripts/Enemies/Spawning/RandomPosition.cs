@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomPosition : MonoBehaviour
+public sealed class RandomPosition : SpawnSetting
 {
-    // Start is called before the first frame update
-    void Start()
+    public sealed override void change(GameObject target)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        target.transform.position = Tools.RandomPolygonPosition(GameplayComponents.main.levelBoundariesFill.points);
     }
 }

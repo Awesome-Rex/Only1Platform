@@ -59,6 +59,12 @@ TextureImporter:
   - first:
       213: 4030370783752015550
     second: StraightWallInvincible
+  - first:
+      213: 5620742225186212019
+    second: WarningOutline
+  - first:
+      213: 7314091607392916173
+    second: WarningMark
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -529,7 +535,7 @@ TextureImporter:
         width: 530
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -537,6 +543,48 @@ TextureImporter:
       bones: []
       spriteID: 91ba5b7087329b44db1f073f561ea997
       internalID: 4030370783752015550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarningOutline
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 768
+        width: 384
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 414c979ca4a9c4d44900a0a03e08ffe0
+      internalID: 5620742225186212019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarningMark
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 768
+        width: 32
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c3f69589ea17d04f8c03999458ed68e
+      internalID: 7314091607392916173
       vertices: []
       indices: 
       edges: []

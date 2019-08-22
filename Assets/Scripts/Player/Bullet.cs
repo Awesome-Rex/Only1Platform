@@ -60,7 +60,7 @@ public class Bullet : MonoBehaviour
             }
         }
 
-        if (!dead && collisionControl.collisionEnter && (Tools.ExistsTag(collisionControl.collisionEnterCol, "Enemy") || Tools.ExistsTag(collisionControl.collisionEnterCol, "Platform")))
+        if (!dead && collisionControl.collisionEnter && (Tools.ExistsTag(collisionControl.collisionEnterCol, "Enemy") || Tools.ExistsTag(collisionControl.collisionEnterCol, "Platform") || Tools.ExistsTag(collisionControl.collisionEnterCol, "LevelBoundaries")))
         {
             //Debug.Log("Bullet hit");
 

@@ -9,6 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5480204189327524803}
+  - component: {fileID: 2901859017275715668}
+  - component: {fileID: -348169720207359070}
+  - component: {fileID: -8614754273493887855}
+  - component: {fileID: -6536078613249835476}
   m_Layer: 0
   m_Name: MissileTwins
   m_TagString: Untagged
@@ -32,6 +36,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2901859017275715668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481157984332413913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ca5085733ef3e489870e7cd050feee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-348169720207359070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481157984332413913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ef02f56aa9ea644afd2629910a56ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 1
+--- !u!114 &-8614754273493887855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481157984332413913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056d9b07a4eede744ab01edac3f36ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeBefore: 1
+--- !u!114 &-6536078613249835476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481157984332413913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d638bd2f4c4bc4eb3eb8703a8e3bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeBefore: 1
 --- !u!1001 &6260282425203606277
 PrefabInstance:
   m_ObjectHideFlags: 0

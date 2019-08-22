@@ -9,6 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6536255680321150387}
+  - component: {fileID: -8051738084666661145}
+  - component: {fileID: 6804487089313553411}
+  - component: {fileID: -2395846016659523594}
+  - component: {fileID: 7894355372534474045}
   m_Layer: 0
   m_Name: MissileLine
   m_TagString: Untagged
@@ -45,6 +49,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8051738084666661145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328700202114664625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ca5085733ef3e489870e7cd050feee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6804487089313553411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328700202114664625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ef02f56aa9ea644afd2629910a56ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 1
+--- !u!114 &-2395846016659523594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328700202114664625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35b4f570caac03c49864541370c3eaa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeBefore: 1
+--- !u!114 &7894355372534474045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328700202114664625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29db40e28573994aa2f115c907833d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeBefore: 1
 --- !u!1001 &507004659457876940
 PrefabInstance:
   m_ObjectHideFlags: 0

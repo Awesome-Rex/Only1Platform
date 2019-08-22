@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1177126218}
   m_Layer: 0
   m_Name: Mark
-  m_TagString: Untagged
+  m_TagString: PlaceHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 2031746440}
   m_Layer: 0
   m_Name: Outline
-  m_TagString: Untagged
+  m_TagString: PlaceHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 899649059}
   m_Layer: 0
   m_Name: Warning
-  m_TagString: Untagged
+  m_TagString: PlaceHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

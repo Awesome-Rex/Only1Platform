@@ -81,7 +81,7 @@ public class Tools
         }
     }
 
-    public static void ReplaceGameObject(GameObject target, GameObject result)
+    public static void ReplaceGameObject(GameObject target, GameObject result, bool inInspector = true)
     {
         Transform parent = target.transform.parent;
         List<Transform> children = target.transform.GetComponentsInChildren<Transform>().ToList();
@@ -94,7 +94,13 @@ public class Tools
 
         target.transform.SetParent(null);
 
-        GameObject newOriginal = Object.Instantiate(result);
+        GameObject newOriginal = null;
+        if (inInspector) {
+            newOriginal = result;
+        } else
+        {
+            newOriginal = Object.Instantiate(result);
+        }
 
         newOriginal.transform.SetParent(parent);
 
@@ -106,7 +112,7 @@ public class Tools
         Object.Destroy(target);
     }
 
-    public static void ReplaceGameObjectFamily(GameObject targetParent, GameObject[] targetChildren, GameObject result)
+    public static void ReplaceGameObjectFamily(GameObject targetParent, GameObject[] targetChildren, GameObject result, bool inInspector = true)
     {
         List<GameObject> placeHolders = new List<GameObject>();
         placeHolders.Add(targetParent);
@@ -135,7 +141,15 @@ public class Tools
             Object.Destroy(placeHolder);
         }
 
-        GameObject newOriginal = Object.Instantiate(result);
+        GameObject newOriginal = null;
+        if (inInspector)
+        {
+            newOriginal = result;
+        }
+        else
+        {
+            newOriginal = Object.Instantiate(result);
+        }
 
         newOriginal.transform.SetParent(grandParent);
 

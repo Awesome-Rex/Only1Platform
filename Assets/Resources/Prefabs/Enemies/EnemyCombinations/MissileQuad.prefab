@@ -9,6 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 748550483225923257}
+  - component: {fileID: -4075327555343529812}
+  - component: {fileID: 6426704950557959282}
+  - component: {fileID: -6296693501687306897}
+  - component: {fileID: -8664969412266893736}
   m_Layer: 0
   m_Name: MissileQuad
   m_TagString: Untagged
@@ -34,6 +38,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4075327555343529812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2278619956227126947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ca5085733ef3e489870e7cd050feee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6426704950557959282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2278619956227126947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ef02f56aa9ea644afd2629910a56ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 1
+--- !u!114 &-6296693501687306897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2278619956227126947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056d9b07a4eede744ab01edac3f36ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeBefore: 1
+--- !u!114 &-8664969412266893736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2278619956227126947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d638bd2f4c4bc4eb3eb8703a8e3bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeBefore: 1
 --- !u!1001 &1192899389093875327
 PrefabInstance:
   m_ObjectHideFlags: 0

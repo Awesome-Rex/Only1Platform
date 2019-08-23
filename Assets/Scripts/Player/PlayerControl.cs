@@ -399,10 +399,10 @@ public class PlayerControl : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             //GameObject.Find("Square").transform.position = Tools.RandomPolygonPosition(GameObject.Find("LevelBoundaries").GetComponent<PolygonCollider2D>().points);
-            StartCoroutine(Spawnable.spawnEnemy((Resources.Load("Prefabs/Enemies/EnemyCombinations/Test") as GameObject).GetComponent<Spawnable>()));
+            StartCoroutine(Spawnable.spawnEnemy((Resources.Load("Prefabs/Enemies/EnemyCombinations/MissileLine") as GameObject).GetComponent<Spawnable>()));
         }
     }
 }

@@ -51,7 +51,7 @@ public class Spawnable : MonoBehaviour
                 }
 
                 createdReplacement.transform.position = obj.transform.position;
-                createdReplacement.transform.rotation = obj.rotation;
+                createdReplacement.transform.rotation = Quaternion.Euler(Vector3.zero);
                 createdReplacement.transform.localScale = obj.localScale;
 
                 createdReplacement.GetComponent<PlaceHolder>().original = obj.gameObject/* original prefab file, gotta fix*/;

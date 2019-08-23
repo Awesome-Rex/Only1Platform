@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameplayCameraControl : MonoBehaviour
 {
+    private new Camera camera;
+
     private bool hitShaking;
 
     public IEnumerator hitShake (Vector3 a, Vector3 b)
@@ -47,6 +49,8 @@ public class GameplayCameraControl : MonoBehaviour
 
     private void Awake()
     {
+        camera = GetComponent<Camera>();
+
         hitShaking = false;
     }
 
@@ -63,6 +67,15 @@ public class GameplayCameraControl : MonoBehaviour
         {
             if (!GameplayComponents.main.player.playerShooting.aiming) {
                 transform.position = Vector3.Lerp(transform.position, GameplayComponents.main.player.transform.position + new Vector3(0f, 0f, -10f), 0.25f);
+
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 12f, 0.1f);
+                }
+                else if (!Input.GetKey(KeyCode.Space) && camera.orthographicSize > 6f)
+                {
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 6f, 0.1f);
+                }
             } else if (GameplayComponents.main.player.playerShooting.aiming)
             {
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -72,11 +85,23 @@ public class GameplayCameraControl : MonoBehaviour
 
                     transform.position = Vector3.Lerp(transform.position, (GameplayComponents.main.player.transform.position + (-(GameplayComponents.main.player.transform.position - mousePosition) / 3f/*.normalized * */)) + new Vector3(0f, 0f, -10f), 0.25f);
 
+                    
                 } else
                 {
                     transform.position = Vector3.Lerp(transform.position, (GameplayComponents.main.player.transform.position + (-(GameplayComponents.main.player.transform.position - mousePosition).normalized * 3f)) + new Vector3(0f, 0f, -10f), 0.25f);
                 }
+
+                if (camera.orthographicSize > 6f)
+                {
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 6f, 0.25f);
+                }
             }
-        } 
+        } else
+        {
+            if (camera.orthographicSize > 6f)
+            {
+                camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 6f, 0.25f);
+            }
+        }
     }
 }

@@ -66,15 +66,15 @@ public class GameplayCameraControl : MonoBehaviour
         if (!hitShaking && !GameplayComponents.main.player.damaged)
         {
             if (!GameplayComponents.main.player.playerShooting.aiming) {
-                transform.position = Vector3.Lerp(transform.position, GameplayComponents.main.player.transform.position + new Vector3(0f, 0f, -10f), 0.25f);
+                transform.position = Vector3.Lerp(transform.position, GameplayComponents.main.player.transform.position + new Vector3(0f, 0f, -10f), 0.1f * 50f * Time.deltaTime);
 
                 if (Input.GetKey(KeyCode.Space))
                 {
-                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 12f, 0.1f);
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 12f, 0.1f * 50f * Time.deltaTime);
                 }
                 else if (!Input.GetKey(KeyCode.Space) && camera.orthographicSize > 6f)
                 {
-                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 6f, 0.1f);
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 6f, 0.1f * 50f * Time.deltaTime);
                 }
             } else if (GameplayComponents.main.player.playerShooting.aiming)
             {
@@ -83,24 +83,24 @@ public class GameplayCameraControl : MonoBehaviour
 
                 if (Vector3.Distance(GameplayComponents.main.player.transform.position, mousePosition) / 3f < 3f) {
 
-                    transform.position = Vector3.Lerp(transform.position, (GameplayComponents.main.player.transform.position + (-(GameplayComponents.main.player.transform.position - mousePosition) / 3f/*.normalized * */)) + new Vector3(0f, 0f, -10f), 0.25f);
+                    transform.position = Vector3.Lerp(transform.position, (GameplayComponents.main.player.transform.position + (-(GameplayComponents.main.player.transform.position - mousePosition) / 3f/*.normalized * */)) + new Vector3(0f, 0f, -10f), 0.25f * 50f * Time.deltaTime);
 
                     
                 } else
                 {
-                    transform.position = Vector3.Lerp(transform.position, (GameplayComponents.main.player.transform.position + (-(GameplayComponents.main.player.transform.position - mousePosition).normalized * 3f)) + new Vector3(0f, 0f, -10f), 0.25f);
+                    transform.position = Vector3.Lerp(transform.position, (GameplayComponents.main.player.transform.position + (-(GameplayComponents.main.player.transform.position - mousePosition).normalized * 3f)) + new Vector3(0f, 0f, -10f), 0.25f * 50f * Time.deltaTime);
                 }
 
                 if (camera.orthographicSize > 6f)
                 {
-                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 6f, 0.25f);
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 6f, 0.25f * 50f * Time.deltaTime);
                 }
             }
         } else
         {
             if (camera.orthographicSize > 6f)
             {
-                camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 6f, 0.25f);
+                camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 6f, 0.25f * 50f * Time.deltaTime);
             }
         }
     }

@@ -24,6 +24,7 @@ public abstract class KnockBackDeath : Enemy
         foreach (SpriteRenderer i in spriteRenderers) {
             i.material.SetFloat("_Flashing", 1f);
             i.material.SetColor("Colour", new Color(1f, 1f, 1f, 0.75f));
+            i.sortingLayerName = "Dead";
         }
         transform.localScale = new Vector3(1.5f, 1.5f, 1f);
         Invoke("deadSprite", 0.1f);

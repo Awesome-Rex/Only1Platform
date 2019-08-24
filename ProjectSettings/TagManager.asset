@@ -46,6 +46,9 @@ TagManager:
   - name: LevelArea
     uniqueID: 323054775
     locked: 0
+  - name: ShootZone
+    uniqueID: 434192491
+    locked: 0
   - name: Dead
     uniqueID: 721026947
     locked: 0
@@ -57,4 +60,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3908453601
+    locked: 0
+  - name: UI
+    uniqueID: 2539805119
     locked: 0

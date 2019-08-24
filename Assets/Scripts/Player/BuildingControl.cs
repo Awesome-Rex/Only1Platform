@@ -41,7 +41,7 @@ public class BuildingControl : MonoBehaviour
             {
                 GameplayComponents.main.platformGhostZone.transform.position = roundedPosition;
                 GameplayComponents.main.platformGhostZone.transform.rotation = GameplayComponents.main.platformGhost.transform.rotation;
-                GameplayComponents.main.platformGhostZone.Play();
+                GameplayComponents.main.platformGhostZone.Play("Fade", 0);
             }
 
             lastRoundedPosition = roundedPosition;

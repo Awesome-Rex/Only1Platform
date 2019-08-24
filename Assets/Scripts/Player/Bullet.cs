@@ -72,8 +72,10 @@ public class Bullet : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(newDir);
             spriteRenderer.color = new Color(0.5f, 0.5f, 0.5f, 0.25f);
+            spriteRenderer.sortingLayerName = "Dead";
 
             rigidbody2D.velocity = Vector2.zero;
+            rigidbody2D.useAutoMass = true;
             rigidbody2D.AddForce((Quaternion.Euler(newDir) * Vector3.right) * 25f);
             rigidbody2D.angularVelocity = 0f;
 

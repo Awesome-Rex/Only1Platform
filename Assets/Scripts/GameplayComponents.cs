@@ -11,7 +11,7 @@ public class GameplayComponents : MonoBehaviour
 
     public GameObject platform;
     public GameObject platformGhost;
-    public Animation platformGhostZone;
+    public Animator platformGhostZone;
 
     public GameObject gridGhost;
 
@@ -26,8 +26,14 @@ public class GameplayComponents : MonoBehaviour
     public PlaceHolder warning;
     public PlaceHolder blank;
 
+    public Animator ammoIcon;
+
     private void Awake()
     {
         main = this;
+
+        platformGhostZone.SetFloat("Length", 4f);
+        ammoIcon.SetFloat("Length", 1f);
+        
     }
 }

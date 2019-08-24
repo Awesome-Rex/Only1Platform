@@ -65,6 +65,12 @@ TextureImporter:
   - first:
       213: 7314091607392916173
     second: WarningMark
+  - first:
+      213: -177602419335775945
+    second: PauseButton
+  - first:
+      213: 4433272867534767446
+    second: AmmoIcon
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -489,9 +495,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 22
-        y: 416
-        width: 551
-        height: 528
+        y: 410
+        width: 545
+        height: 536
       alignment: 9
       pivot: {x: 0.49192634, y: 0.5189566}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -577,7 +583,7 @@ TextureImporter:
         width: 32
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -585,6 +591,48 @@ TextureImporter:
       bones: []
       spriteID: 9c3f69589ea17d04f8c03999458ed68e
       internalID: 7314091607392916173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PauseButton
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d759ef263b470b4f840b35a66a4e76e
+      internalID: -177602419335775945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AmmoIcon
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 376
+        height: 376
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7769b747acc25194cb897c9cde1c5312
+      internalID: 4433272867534767446
       vertices: []
       indices: 
       edges: []

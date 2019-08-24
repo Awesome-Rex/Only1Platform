@@ -275,6 +275,7 @@ public class PlayerControl : MonoBehaviour
                 {
                     damaged = false;
                     GetComponentInChildren<Collider2D>().gameObject.layer = LayerMask.NameToLayer("Player");
+                    GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Dead";
 
                     ChromaticAberration chrom;
                     GameplayComponents.main.postProcessing.profile.TryGetSettings(out chrom);
@@ -285,6 +286,7 @@ public class PlayerControl : MonoBehaviour
 
                 if (!playerShooting.canShoot) {
                     playerShooting.canShoot = true;
+                    GameplayComponents.main.ammoIcon.Play("Fade", 0);
                 }
 
                 animator.SetTrigger("Land");
@@ -305,6 +307,7 @@ public class PlayerControl : MonoBehaviour
                 {
                     damaged = false;
                     GetComponentInChildren<Collider2D>().gameObject.layer = LayerMask.NameToLayer("Player");
+                    GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Dead";
 
                     ChromaticAberration chrom;
                     GameplayComponents.main.postProcessing.profile.TryGetSettings(out chrom);
@@ -376,6 +379,7 @@ public class PlayerControl : MonoBehaviour
 
             damaged = true;
             GetComponentInChildren<Collider2D>().gameObject.layer = LayerMask.NameToLayer("Invincible");
+            GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Dead";
 
             animator.SetTrigger("Damage");
 
@@ -402,7 +406,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //GameObject.Find("Square").transform.position = Tools.RandomPolygonPosition(GameObject.Find("LevelBoundaries").GetComponent<PolygonCollider2D>().points);
-            StartCoroutine(Spawnable.spawnEnemy((Resources.Load("Prefabs/Enemies/EnemyCombinations/MissileLine") as GameObject).GetComponent<Spawnable>()));
+            StartCoroutine(Spawnable.spawnEnemy((Resources.Load("Prefabs/Enemies/EnemyCombinations/MissileSnake") as GameObject).GetComponent<Spawnable>()));
         }
     }
 }

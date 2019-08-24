@@ -66,8 +66,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2088783989
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7496953396971288015, guid: 3f5fb6a4a63ff7e49ab0fb012b1dc148,
     type: 3}
@@ -147,8 +147,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2088783989
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7496953396971288015, guid: 3f5fb6a4a63ff7e49ab0fb012b1dc148,
     type: 3}
@@ -287,6 +287,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_UseAutoMass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977727436602110053, guid: cff3deceab97cd24b968eb19eb5bb4f1,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.08726647
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5977727436602110052, guid: cff3deceab97cd24b968eb19eb5bb4f1, type: 3}

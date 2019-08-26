@@ -53,21 +53,9 @@ public class Platform : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-        if (health.dead && !regenerating)
-        {
-            gameObject.layer = LayerMask.NameToLayer("Invincible");
-
-            outline.sprite = GameplayComponents.main.platformInvincibleOutlineSprite;
-
-            sprite.color = new Color(1f, 1f, 1f, 0f);
-            outline.color = new Color(1f, 1f, 1f, 1f);
-
-            StartCoroutine(regenerate());
-        }
-
-        if (!health.dead) {
+        if (!regenerating) {
             if (collisionControl.collisionEnter && Tools.ExistsTag(collisionControl.collisionEnterCol, "Enemy"))
             {
                 foreach (GameObject hit in collisionControl.collisionEnterCol) {
@@ -77,13 +65,26 @@ public class Platform : MonoBehaviour
                 }
             }
 
-            if (health.health < health.maxHealth)
+            if (health.dead)
             {
-                health.health += (10f / 3f) * Time.deltaTime;
-            }
+                gameObject.layer = LayerMask.NameToLayer("Invincible");
 
-            sprite.color = new Color(1f, 1f, 1f, health.health / 10f);
-            outline.color = new Color(1f, 1f, 1f, 10f - (health.health / 10f));
+                outline.sprite = GameplayComponents.main.platformInvincibleOutlineSprite;
+
+                sprite.color = new Color(1f, 1f, 1f, 0f);
+                outline.color = new Color(1f, 1f, 1f, 1f);
+
+                StartCoroutine(regenerate());
+            } else
+            {
+                if (health.health < health.maxHealth)
+                {
+                    health.health += (10f / 3f) * Time.deltaTime;
+                }
+
+                sprite.color = new Color(1f, 1f, 1f, health.health / 10f);
+                outline.color = new Color(1f, 1f, 1f, 10f - (health.health / 10f));
+            }
         }
     }
 }

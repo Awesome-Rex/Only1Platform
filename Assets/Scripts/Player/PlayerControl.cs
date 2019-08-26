@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class PlayerControl : MonoBehaviour
 
     public List<Coroutine> wallGrabLimits;
 
+    private Health health;
     private Transform graphics;
     private CollisionControl collisionControl;
     private new Rigidbody2D rigidbody2D;
@@ -55,10 +57,12 @@ public class PlayerControl : MonoBehaviour
             Physics2D.queriesHitTriggers = false;
             if (wallDir == Tools.HDirection.Left)
             {
-                wallDetect = Physics2D.BoxCast(transform.position + new Vector3(-0.5f - ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
+                //wallDetect = Physics2D.BoxCast(transform.position + new Vector3(-0.5f - ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
+                wallDetect = Physics2D.Raycast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0.5f, 0f), Vector2.left, 1f / 6f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
             } else if (wallDir == Tools.HDirection.Right)
             {
-                wallDetect = Physics2D.BoxCast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
+                //wallDetect = Physics2D.BoxCast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
+                wallDetect = Physics2D.Raycast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0.5f, 0f), Vector2.right, 1f / 6f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
             }
             Physics2D.queriesHitTriggers = true;
         } while (wallDetect.collider != null);
@@ -109,6 +113,7 @@ public class PlayerControl : MonoBehaviour
 
         wallGrabLimits = new List<Coroutine>();
 
+        health = GetComponent<Health>();
         graphics = transform.GetChild(0);
         collisionControl = GetComponent<CollisionControl>();
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -131,16 +136,18 @@ public class PlayerControl : MonoBehaviour
             platformDetect = new RaycastHit2D();
         }*/
 
-        RaycastHit2D wallGrabDetectR = Physics2D.BoxCast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
-        RaycastHit2D wallGrabDetectL = Physics2D.BoxCast(transform.position + new Vector3(-0.5f - ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
+        RaycastHit2D wallPushingR = Physics2D.BoxCast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
+        RaycastHit2D wallPushingL = Physics2D.BoxCast(transform.position + new Vector3(-0.5f - ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
+        RaycastHit2D wallGrabDetectR = Physics2D.Raycast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0.5f, 0f), Vector2.right, 1f / 6f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
+        RaycastHit2D wallGrabDetectL = Physics2D.Raycast(transform.position + new Vector3(-0.5f - ((1f / 12f) / 2f), 0.5f, 0f), Vector2.left, 1f / 6f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
         Physics2D.queriesHitTriggers = true;
 
-        if (Input.GetKey(KeyCode.A) && !wallJumpRestrict && !(wallGrabDetectL.collider/* != null && (wallGrabDetectL.collider.transform.rotation.eulerAngles.z != 0f)*/))
+        if (Input.GetKey(KeyCode.A) && !wallJumpRestrict && !(wallPushingL.collider/* != null && (wallGrabDetectL.collider.transform.rotation.eulerAngles.z != 0f)*/))
         {
             rigidbody2D.velocity = new Vector2(-5f, rigidbody2D.velocity.y);
             animator.SetTrigger("Move");
         }
-        else if (Input.GetKey(KeyCode.D) && !wallJumpRestrict && !(wallGrabDetectR.collider != null/* && (wallGrabDetectR.collider.transform.rotation.eulerAngles.z != 0f)*/))
+        else if (Input.GetKey(KeyCode.D) && !wallJumpRestrict && !(wallPushingR.collider != null/* && (wallGrabDetectR.collider.transform.rotation.eulerAngles.z != 0f)*/))
         {
             rigidbody2D.velocity = new Vector2(5f, rigidbody2D.velocity.y);
             animator.SetTrigger("Move");
@@ -260,7 +267,7 @@ public class PlayerControl : MonoBehaviour
 
             animator.SetTrigger("Jump");
         }
-        else if (jumping && landable/* && (platformDetect.collider != null || ((wallGrabDetectR.collider != null || wallGrabDetectL.collider != null)&& !wallGrabbing))*/)
+        else if (jumping && landable/* && ((platformDetect.collider != null && platformDetect.collider.gameObject.tag != "LevelBoundaries") || (canWallGrab && ((wallGrabDetectR.collider != null && wallGrabDetectR.collider.gameObject.tag != "LevelBoundaries") || (wallGrabDetectL.collider != null && wallGrabDetectL.collider.gameObject.tag != "LevelBoundaries")) && !wallGrabbing/* && rigidbody2D.velocity.y != 0f))*/)
         {
             if (platformDetect.collider != null && platformDetect.collider.gameObject.tag != "LevelBoundaries")
             {
@@ -291,7 +298,7 @@ public class PlayerControl : MonoBehaviour
 
                 animator.SetTrigger("Land");
             }
-            else if (canWallGrab && ((wallGrabDetectR.collider != null && wallGrabDetectR.collider.gameObject.tag != "LevelBoundaries") || (wallGrabDetectL.collider != null && wallGrabDetectL.collider.gameObject.tag != "LevelBoundaries")) && !wallGrabbing && rigidbody2D.velocity.y != 0f)
+            else if (canWallGrab && ((wallGrabDetectR.collider != null && wallGrabDetectR.collider.gameObject.tag != "LevelBoundaries") || (wallGrabDetectL.collider != null && wallGrabDetectL.collider.gameObject.tag != "LevelBoundaries")) && !wallGrabbing/* && rigidbody2D.velocity.y != 0f*/)
             {
                 wallGrabbing = true;
                 jumping = false;
@@ -365,6 +372,9 @@ public class PlayerControl : MonoBehaviour
         )
         {
             //Debug.Log("Player got hit!");
+            health.health -= 1;
+            GameplayComponents.main.playerHealth.sizeDelta = new Vector2(health.health * 18f, 25f);
+            
 
             jumping = true;
             canJumpHold = false;
@@ -406,7 +416,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //GameObject.Find("Square").transform.position = Tools.RandomPolygonPosition(GameObject.Find("LevelBoundaries").GetComponent<PolygonCollider2D>().points);
-            StartCoroutine(Spawnable.spawnEnemy((Resources.Load("Prefabs/Enemies/EnemyCombinations/MissileSnake") as GameObject).GetComponent<Spawnable>()));
+            StartCoroutine(Spawnable.spawnEnemy((Resources.Load("Prefabs/Enemies/EnemyCombinations/MissileQuad") as GameObject).GetComponent<Spawnable>()));
         }
     }
 }

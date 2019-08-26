@@ -16,7 +16,8 @@ public class Health : MonoBehaviour
             if (_health > maxHealth)
             {
                 _health = maxHealth;
-            } else if (_health <= 0f)
+            } 
+            if (_health <= 0f)
             {
                 _health = 0f;
                 dead = true;

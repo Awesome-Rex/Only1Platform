@@ -95,10 +95,15 @@ public class PlayerShooting : MonoBehaviour
 
         playerControl.wallJumpRestrict = true;
         playerControl.Invoke("allowMovement", 0.1f);
-        //Tools.CustomInvoke(() => GameplayComponents.main.player.playerShooting.rigidbody2D.gravityScale = 1f, 1f);
+        Invoke("stopKnockBackJump", 0.1f);
 
         shootZone.gameObject.SetActive(false);
         aiming = false;
+    }
+
+    private void stopKnockBackJump ()
+    {
+        rigidbody2D.velocity = Vector2.zero;
     }
 
     private void Awake () {

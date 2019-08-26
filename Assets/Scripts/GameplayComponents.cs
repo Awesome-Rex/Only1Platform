@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.UI;
 
 public class GameplayComponents : MonoBehaviour
 {
     public static GameplayComponents main;
 
     public PlayerControl player;
+    public RectTransform playerHealth;
 
     public GameObject platform;
     public GameObject platformGhost;
@@ -27,6 +29,12 @@ public class GameplayComponents : MonoBehaviour
     public PlaceHolder blank;
 
     public Animator ammoIcon;
+
+    public Button pauseButton;
+
+    public GameObject pauseMenu;
+    public GameObject pauseMenuDefault;
+    public GameObject pauseMenuSettings;
 
     private void Awake()
     {

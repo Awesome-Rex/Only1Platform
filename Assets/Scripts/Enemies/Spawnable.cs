@@ -48,6 +48,9 @@ public class Spawnable : MonoBehaviour
                 if (obj.transform == newTarget.transform)
                 {
                     replacement = createdReplacement;
+                    /*replacement.AddComponent<AudioSource>();
+                    replacement.GetComponent<AudioSource>().clip = GameplayComponents.main.warningSound;
+                    replacement.GetComponent<AudioSource>().Play();*/
                 }
 
                 createdReplacement.transform.position = obj.transform.position;
@@ -67,6 +70,7 @@ public class Spawnable : MonoBehaviour
         Destroy(replacement.gameObject);
 
         target.gameObject.SetActive(true);
+        target.transform.SetParent(GameplayComponents.main.enemyHolder.transform);
 
         foreach (SpawnSetting setting in target.GetComponentsInChildren<SpawnSetting>())
         {

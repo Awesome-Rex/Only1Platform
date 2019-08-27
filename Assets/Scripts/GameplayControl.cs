@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameplayControl : MonoBehaviour
 {
-    public GameplayControl main;
+    public static GameplayControl main;
 
     public bool paused;
 

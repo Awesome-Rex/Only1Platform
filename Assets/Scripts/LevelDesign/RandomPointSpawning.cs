@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class RandomPointSpawning : MonoBehaviour
 {
+    public List<SpawnRound> rounds;
+
+    public float minFrequency;
+    public float maxFrequency;
+
+    IEnumerator spawnCycle()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(minFrequency, maxFrequency + 0.01f));
+
+            foreach (EnemySpawn i in rounds[Random.Range(0, rounds.Count)].enemies)
+            {
+                for (int j = 0; j < i.quantity; j++)
+                {
+                    //Spawnable enemyPrefab = Instantiate(i.enemy);
+
+                    StartCoroutine(Spawnable.spawnEnemy(i.enemy));
+                }
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(spawnCycle());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+
     }
 }

@@ -25,6 +25,8 @@ public class PlayerShooting : MonoBehaviour
 
         shootZone.gameObject.SetActive(true);
 
+        transform.GetChild(3).GetChild(0).GetComponent<AudioSource>().Play();
+
         while (Time.time - startTime < 1f && Input.GetMouseButton(0))
         {
             if (playerControl.damaged)
@@ -52,6 +54,8 @@ public class PlayerShooting : MonoBehaviour
 
             shootZone.transform.right = (Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0f, 0f, 10f)) - shootZone.transform.position;
         }
+
+        transform.GetChild(3).GetChild(0).GetComponent<AudioSource>().Stop();
 
         List<RaycastHit2D> detectedEnemies = new List<RaycastHit2D>();
 
@@ -82,12 +86,16 @@ public class PlayerShooting : MonoBehaviour
             }
         }
 
-        for (float i = 0f; i < Mathf.Ceil(angle * 11.25f) / 11.25f; i += 11.25f) {
+        //for (float i = 0f; i < Mathf.Ceil(angle * 11.25f) / 11.25f; i += 11.25f) {
+        for (float i = 0f; i < Mathf.Ceil(angle * 5.625f) / 5.625f; i += 5.5625f) {
             GameObject bulletPrefab = Instantiate(bullet);
             bulletPrefab.transform.position = transform.position;
             bulletPrefab.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, shootZone.transform.rotation.eulerAngles.z + Random.Range(-(angle / 2f), (angle / 2f))));
             bulletPrefab.GetComponent<Bullet>().distance = distance/* * 1.5f*/;
         }
+
+        GetComponent<AudioSource>().clip = GameplayComponents.main.shotSound;
+        GetComponent<AudioSource>().Play();
 
         rigidbody2D.gravityScale = 0f;
         //rigidbody2D.AddForce(-shootZone.transform.right * 150f);

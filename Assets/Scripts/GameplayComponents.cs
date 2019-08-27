@@ -11,6 +11,11 @@ public class GameplayComponents : MonoBehaviour
     public PlayerControl player;
     public RectTransform playerHealth;
 
+    public AudioClip reloadSound;
+    public AudioClip shotSound;
+
+    public AudioClip warningSound;
+
     public GameObject platform;
     public GameObject platformGhost;
     public Animator platformGhostZone;
@@ -35,6 +40,8 @@ public class GameplayComponents : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject pauseMenuDefault;
     public GameObject pauseMenuSettings;
+
+    public GameObject enemyHolder;
 
     private void Awake()
     {

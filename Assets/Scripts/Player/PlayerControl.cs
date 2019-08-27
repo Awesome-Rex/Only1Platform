@@ -36,6 +36,8 @@ public class PlayerControl : MonoBehaviour
 
     void allowMovement ()
     {
+        //// problem is here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         wallJumpRestrict = false;
 
         if (!wallGrabbing)
@@ -58,7 +60,7 @@ public class PlayerControl : MonoBehaviour
             if (wallDir == Tools.HDirection.Left)
             {
                 //wallDetect = Physics2D.BoxCast(transform.position + new Vector3(-0.5f - ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
-                wallDetect = Physics2D.Raycast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0.5f, 0f), Vector2.left, 1f / 6f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
+                wallDetect = Physics2D.Raycast(transform.position + new Vector3(-0.5f - ((1f / 12f) / 2f), 0.5f, 0f), Vector2.left, 1f / 6f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
             } else if (wallDir == Tools.HDirection.Right)
             {
                 //wallDetect = Physics2D.BoxCast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
@@ -138,16 +140,18 @@ public class PlayerControl : MonoBehaviour
 
         RaycastHit2D wallPushingR = Physics2D.BoxCast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
         RaycastHit2D wallPushingL = Physics2D.BoxCast(transform.position + new Vector3(-0.5f - ((1f / 12f) / 2f), 0f, 0f), new Vector2((16f / 192f) - (4f / 192f), 1f - (4f / 192f)), 0f, Vector2.zero, 0f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
+
         RaycastHit2D wallGrabDetectR = Physics2D.Raycast(transform.position + new Vector3(0.5f + ((1f / 12f) / 2f), 0.5f, 0f), Vector2.right, 1f / 6f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
         RaycastHit2D wallGrabDetectL = Physics2D.Raycast(transform.position + new Vector3(-0.5f - ((1f / 12f) / 2f), 0.5f, 0f), Vector2.left, 1f / 6f, ((1 << LayerMask.NameToLayer("Platform")) | (1 << LayerMask.NameToLayer("Invincible"))));
+
         Physics2D.queriesHitTriggers = true;
 
-        if (Input.GetKey(KeyCode.A) && !wallJumpRestrict && !(wallPushingL.collider/* != null && (wallGrabDetectL.collider.transform.rotation.eulerAngles.z != 0f)*/))
+        if (Input.GetKey(KeyCode.A) && !wallJumpRestrict && !(wallPushingL.collider != null/* && (wallPushingL.collider.transform.rotation.eulerAngles.z != 0f)*/))
         {
             rigidbody2D.velocity = new Vector2(-5f, rigidbody2D.velocity.y);
             animator.SetTrigger("Move");
         }
-        else if (Input.GetKey(KeyCode.D) && !wallJumpRestrict && !(wallPushingR.collider != null/* && (wallGrabDetectR.collider.transform.rotation.eulerAngles.z != 0f)*/))
+        else if (Input.GetKey(KeyCode.D) && !wallJumpRestrict && !(wallPushingR.collider != null/* && (wallPushingR.collider.transform.rotation.eulerAngles.z != 0f)*/))
         {
             rigidbody2D.velocity = new Vector2(5f, rigidbody2D.velocity.y);
             animator.SetTrigger("Move");
@@ -294,6 +298,9 @@ public class PlayerControl : MonoBehaviour
                 if (!playerShooting.canShoot) {
                     playerShooting.canShoot = true;
                     GameplayComponents.main.ammoIcon.Play("Fade", 0);
+
+                    GetComponent<AudioSource>().clip = GameplayComponents.main.reloadSound;
+                    GetComponent<AudioSource>().Play();
                 }
 
                 animator.SetTrigger("Land");
@@ -309,6 +316,8 @@ public class PlayerControl : MonoBehaviour
                 wallJumpRestrict = false;
 
                 rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Discrete;
+
+                CancelInvoke("allowMovement");
 
                 if (damaged)
                 {

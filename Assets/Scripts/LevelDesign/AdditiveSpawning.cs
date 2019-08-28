@@ -5,7 +5,40 @@ using UnityEngine;
 [System.Serializable]
 public class Transition
 {
-    public bool hasTransitioned;
+    [SerializeField] public string _transitionType;
+    [SerializeField] public string transitionType
+    {
+        get
+        {
+            return _transitionType;
+        }
+        set
+        {
+            _transitionType = value;
+
+            Transition.reAssign(this, _transitionType);
+        }
+    }
+
+    private static void reAssign (Transition transition, string type)
+    {
+        switch (type)
+        {
+            case "clear":
+                transition = new ClearTransition();
+                break;
+            case "time":
+                transition = new TimeTransition();
+                break;
+            case "score":
+                transition = new ScoreTransition();
+                break;
+        }
+    }
+
+    [SerializeField] public bool hasTransitioned;
+
+
 
     public virtual void startCheck() { }
     public virtual void updateCheck() { }
@@ -75,7 +108,7 @@ public struct SpawnRound
 {
     public List<EnemySpawn> enemies;
 
-    public Transition transition;
+    public List<Transition> transitions;
 }
 
 [System.Serializable]
@@ -137,10 +170,12 @@ public class AdditiveSpawning : MonoBehaviour
     {
         if (currentRound < rounds.Count)
         {
-            rounds[currentRound].transition.updateCheck();
-            if (rounds[currentRound].transition.hasTransitioned)
-            {
-                currentRound++;
+            foreach (Transition transition in rounds[currentRound].transitions) {
+                transition.updateCheck();
+                if (transition.hasTransitioned)
+                {
+                    currentRound++;
+                }
             }
         }
     }

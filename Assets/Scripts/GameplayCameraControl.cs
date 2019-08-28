@@ -70,11 +70,11 @@ public class GameplayCameraControl : MonoBehaviour
 
                 if (Input.GetKey(KeyCode.Space))
                 {
-                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 12f, 0.1f * 50f * Time.deltaTime);
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 16f, 0.1f * 50f * Time.deltaTime);
                 }
-                else if (!Input.GetKey(KeyCode.Space) && camera.orthographicSize > 6f)
+                else if (!Input.GetKey(KeyCode.Space) && camera.orthographicSize > 8f)
                 {
-                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 6f, 0.1f * 50f * Time.deltaTime);
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 8f, 0.1f * 50f * Time.deltaTime);
                 }
             } else if (GameplayComponents.main.player.playerShooting.aiming)
             {
@@ -91,16 +91,16 @@ public class GameplayCameraControl : MonoBehaviour
                     transform.position = Vector3.Lerp(transform.position, (GameplayComponents.main.player.transform.position + (-(GameplayComponents.main.player.transform.position - mousePosition).normalized * 3f)) + new Vector3(0f, 0f, -10f), 0.25f * 50f * Time.deltaTime);
                 }
 
-                if (camera.orthographicSize > 6f)
+                if (camera.orthographicSize > 8f)
                 {
-                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 6f, 0.25f * 50f * Time.deltaTime);
+                    camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 8f, 0.25f * 50f * Time.deltaTime);
                 }
             }
         } else
         {
-            if (camera.orthographicSize > 6f)
+            if (camera.orthographicSize > 8f)
             {
-                camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 6f, 0.25f * 50f * Time.deltaTime);
+                camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, 8f, 0.25f * 50f * Time.deltaTime);
             }
         }
     }

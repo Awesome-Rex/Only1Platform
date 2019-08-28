@@ -61,7 +61,7 @@ public class Canon : KnockBackDeath
     }
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         //transform.right = GameplayComponents.main.player.transform.position - transform.position;
         StartCoroutine(pointNShoot());

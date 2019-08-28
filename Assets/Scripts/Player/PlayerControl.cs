@@ -43,6 +43,7 @@ public class PlayerControl : MonoBehaviour
         if (!wallGrabbing)
         {
             rigidbody2D.gravityScale = 1f;
+            canWallGrab = true;
         }
         //canWallGrab = true;
     }
@@ -199,6 +200,7 @@ public class PlayerControl : MonoBehaviour
                 rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
                 animator.SetTrigger("Fall");
                 //animator.Play("HangTime", 0);
+                canWallGrab = true;
             } else if (platformDetect.collider != null)
             {
                 landable = true;
@@ -234,6 +236,9 @@ public class PlayerControl : MonoBehaviour
             jumpLocationY = rigidbody2D.position.y;
             lastJumpFrameTime = Time.time;
 
+            GetComponent<AudioSource>().clip = GameplayComponents.main.jumpSound;
+            GetComponent<AudioSource>().Play();
+
             rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
             animator.SetTrigger("Jump");
@@ -258,8 +263,11 @@ public class PlayerControl : MonoBehaviour
 
             jumping = true;
             wallGrabbing = false;
-            //canWallGrab = false;
+            canWallGrab = false;
             wallJumpRestrict = true;
+
+            GetComponent<AudioSource>().clip = GameplayComponents.main.jumpSound;
+            GetComponent<AudioSource>().Play();
 
             rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
@@ -281,6 +289,9 @@ public class PlayerControl : MonoBehaviour
 
                 rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Discrete;
 
+
+                GetComponent<AudioSource>().clip = GameplayComponents.main.landSound;
+                GetComponent<AudioSource>().Play();
 
                 if (damaged)
                 {
@@ -328,6 +339,13 @@ public class PlayerControl : MonoBehaviour
                     ChromaticAberration chrom;
                     GameplayComponents.main.postProcessing.profile.TryGetSettings(out chrom);
                     chrom.intensity.value = 0.1f;
+
+
+                    playerShooting.canShoot = true;
+                    GameplayComponents.main.ammoIcon.Play("Fade", 0);
+
+                    GetComponent<AudioSource>().clip = GameplayComponents.main.reloadSound;
+                    GetComponent<AudioSource>().Play();
                 }
 
                 if (wallGrabDetectL.collider != null)
@@ -389,6 +407,8 @@ public class PlayerControl : MonoBehaviour
             canJumpHold = false;
             landable = false;
             canWallGrab = true;
+
+            transform.GetChild(3).GetChild(0).GetComponent<AudioSource>().Stop();
 
             ChromaticAberration chrom;
             GameplayComponents.main.postProcessing.profile.TryGetSettings(out chrom);

@@ -30,6 +30,7 @@ public abstract class KnockBackDeath : Enemy
         Invoke("deadSprite", 0.1f);
 
         rigidbody2D.velocity = Vector3.zero;
+        rigidbody2D.angularVelocity = 0f;
         rigidbody2D.AddTorque(Random.Range(-5.0f, 5.0f));
 
         rigidbody2D.constraints = RigidbodyConstraints2D.None;

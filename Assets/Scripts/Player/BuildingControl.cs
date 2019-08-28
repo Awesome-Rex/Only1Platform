@@ -27,15 +27,15 @@ public class BuildingControl : MonoBehaviour
             if (Vector3.Distance(roundedPosition, hRound) > Vector3.Distance(roundedPosition, vRound))
             {
                 roundedPosition = vRound;
-                GameObject.Find("PlatformGhost").transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 90f));
+                GameplayComponents.main.platformGhost.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 90f));
             }
             else if (Vector3.Distance(roundedPosition, hRound) < Vector3.Distance(roundedPosition, vRound))
             {
                 roundedPosition = hRound;
-                GameObject.Find("PlatformGhost").transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+                GameplayComponents.main.platformGhost.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
             }
 
-            GameObject.Find("PlatformGhost").transform.position = roundedPosition;
+            GameplayComponents.main.platformGhost.transform.position = roundedPosition;
 
             if (lastRoundedPosition != roundedPosition)
             {
@@ -49,8 +49,10 @@ public class BuildingControl : MonoBehaviour
 
         if (Input.GetMouseButton(1) && GameplayComponents.main.platform.transform.position != GameplayComponents.main.platformGhost.transform.position)
         {
-            GameObject.Find("Platform").transform.position = GameObject.Find("PlatformGhost").transform.position;
-            GameObject.Find("Platform").transform.rotation = GameObject.Find("PlatformGhost").transform.rotation;
+            GameplayComponents.main.platform.transform.position = GameplayComponents.main.platformGhost.transform.position;
+            GameplayComponents.main.platform.transform.rotation = GameplayComponents.main.platformGhost.transform.rotation;
+
+            GameplayComponents.main.platform.GetComponent<AudioSource>().Play();
         }
     }
 }

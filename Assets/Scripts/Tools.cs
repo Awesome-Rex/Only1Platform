@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using System.Linq;
 
-public class Tools
+public static class Tools
 {
     public enum HDirection
     {
@@ -302,4 +303,68 @@ public class Tools
 
         return new Vector3();
     }
+
+
+
+    /*public static object GetValue(this UnityEditor.SerializedProperty property)
+    {
+        object obj = property.serializedObject.targetObject;
+
+        FieldInfo field = null;
+        foreach (var path in property.propertyPath.Split('.'))
+        {
+            var type = obj.GetType();
+            field = type.GetField(path);
+            obj = field.GetValue(obj);
+        }
+        return obj;
+    }
+
+    // Sets value from SerializedProperty - even if value is nested
+    public static void SetValue(this UnityEditor.SerializedProperty property, object val)
+    {
+        object obj = property.serializedObject.targetObject;
+
+        List<KeyValuePair<FieldInfo, object>> list = new List<KeyValuePair<FieldInfo, object>>();
+
+        FieldInfo field = null;
+        foreach (var path in property.propertyPath.Split('.'))
+        {
+            var type = obj.GetType();
+            field = type.GetField(path);
+            list.Add(new KeyValuePair<FieldInfo, object>(field, obj));
+            obj = field.GetValue(obj);
+        }
+
+        // Now set values of all objects, from child to parent
+        for (int i = list.Count - 1; i >= 0; --i)
+        {
+            list[i].Key.SetValue(list[i].Value, val);
+            // New 'val' object will be parent of current 'val' object
+            val = list[i].Value;
+        }
+    }
+
+    public static object GetTargetObjectOfProperty(SerializedProperty prop)
+    {
+        if (prop == null) return null;
+
+        var path = prop.propertyPath.Replace(".Array.data[", "[");
+        object obj = prop.serializedObject.targetObject;
+        var elements = path.Split('.');
+        foreach (var element in elements)
+        {
+            if (element.Contains("["))
+            {
+                var elementName = element.Substring(0, element.IndexOf("["));
+                var index = System.Convert.ToInt32(element.Substring(element.IndexOf("[")).Replace("[", "").Replace("]", ""));
+                obj = GetValue_Imp(obj, elementName, index);
+            }
+            else
+            {
+                obj = GetValue_Imp(obj, element);
+            }
+        }
+        return obj;
+    }*/
 }

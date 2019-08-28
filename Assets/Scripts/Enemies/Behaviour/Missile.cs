@@ -12,11 +12,13 @@ public class Missile : KnockBackDeath
     new private void Awake()
     {
         base.Awake();
+        ((KnockBackDeath)this).Awake();
     }
 
     // Start is called before the first frame update
-    internal void Start()
+    new internal void Start()
     {
+        ((KnockBackDeath)this).Start();
 
         origin = transform.position;
         dead = false;
@@ -27,6 +29,7 @@ public class Missile : KnockBackDeath
     new internal void Update()
     {
         base.Update();
+        ((KnockBackDeath)this).Update();
 
         if (!dead)
         {

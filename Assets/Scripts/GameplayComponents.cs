@@ -11,6 +11,8 @@ public class GameplayComponents : MonoBehaviour
     public PlayerControl player;
     public RectTransform playerHealth;
 
+    public AudioClip jumpSound;
+    public AudioClip landSound;
     public AudioClip reloadSound;
     public AudioClip shotSound;
 

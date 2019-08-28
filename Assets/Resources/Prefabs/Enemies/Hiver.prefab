@@ -177,7 +177,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.16666667
+  m_Radius: 0.333333
 --- !u!95 &1010234736
 Animator:
   serializedVersion: 3
@@ -291,7 +291,7 @@ PrefabInstance:
     - target: {fileID: 5977727436602110053, guid: cff3deceab97cd24b968eb19eb5bb4f1,
         type: 3}
       propertyPath: m_Mass
-      value: 0.08726647
+      value: 0.34906512
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5977727436602110052, guid: cff3deceab97cd24b968eb19eb5bb4f1, type: 3}

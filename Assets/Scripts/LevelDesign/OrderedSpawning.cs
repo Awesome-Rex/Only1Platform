@@ -19,16 +19,22 @@ public class OrderedSpawning : MonoBehaviour
     {
         if (currentRound < rounds.Count)
         {
-            rounds[currentRound].transition.updateCheck();
-            if (rounds[currentRound].transition.hasTransitioned)
+            if (currentRound < rounds.Count)
             {
-                currentRound++;
-
-                foreach (EnemySpawn enemy in rounds[currentRound].enemies)
+                foreach (Transition transition in rounds[currentRound].transitions)
                 {
-                    for (int i = 0; i < enemy.quantity; i++)
+                    transition.updateCheck();
+                    if (transition.hasTransitioned)
                     {
-                        Spawnable.spawnEnemy(enemy.enemy);
+                        currentRound++;
+
+                        foreach (EnemySpawn enemy in rounds[currentRound].enemies)
+                        {
+                            for (int i = 0; i < enemy.quantity; i++)
+                            {
+                                Spawnable.spawnEnemy(enemy.enemy);
+                            }
+                        }
                     }
                 }
             }

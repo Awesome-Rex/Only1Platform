@@ -107,7 +107,7 @@ public class ScoreTransition : Transition
 public struct SpawnRound
 {
     public List<EnemySpawn> enemies;
-
+    
     public List<Transition> transitions;
 }
 

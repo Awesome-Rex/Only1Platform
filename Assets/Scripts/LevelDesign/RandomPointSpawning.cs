@@ -13,8 +13,6 @@ public class RandomPointSpawning : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(minFrequency, maxFrequency + 0.01f));
-
             foreach (EnemySpawn i in rounds[Random.Range(0, rounds.Count)].enemies)
             {
                 for (int j = 0; j < i.quantity; j++)
@@ -24,6 +22,8 @@ public class RandomPointSpawning : MonoBehaviour
                     StartCoroutine(Spawnable.spawnEnemy(i.enemy));
                 }
             }
+
+            yield return new WaitForSeconds(Random.Range(minFrequency, maxFrequency + 0.01f));
         }
     }
 

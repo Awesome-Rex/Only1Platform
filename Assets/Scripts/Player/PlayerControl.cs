@@ -445,7 +445,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //GameObject.Find("Square").transform.position = Tools.RandomPolygonPosition(GameObject.Find("LevelBoundaries").GetComponent<PolygonCollider2D>().points);
-            StartCoroutine(Spawnable.spawnEnemy((Resources.Load("Prefabs/Enemies/EnemyCombinations/MissileQuad") as GameObject).GetComponent<Spawnable>()));
+            //StartCoroutine(Spawnable.spawnEnemy((Resources.Load("Prefabs/Enemies/EnemyCombinations/MissileQuad") as GameObject).GetComponent<Spawnable>()));
         }
     }
 }

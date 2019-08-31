@@ -16,6 +16,7 @@ public abstract class KnockBackDeath : Enemy
 
         dead = true;
         gameObject.layer = LayerMask.NameToLayer("Unaffected");
+        transform.SetParent(null);
 
         if (GetComponent<Animator>() != null)
         {

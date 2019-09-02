@@ -4,77 +4,81 @@ using UnityEngine;
 
 public class OrderedSpawning : MonoBehaviour
 {
+    public bool looping = false;
+
     public List<SpawnRound> rounds;
 
     public int currentRound = 0;
 
+    public bool hasIntroTransition = false;
+    public TransitionDetect introTransition;
+
     // Start is called before the first frame update
     void Start()
     {
-        foreach (EnemySpawn enemy in rounds[currentRound].enemies)
-        {
-            for (int i = 0; i < enemy.quantity; i++)
+        if (!hasIntroTransition) {
+            foreach (EnemySpawn enemy in rounds[currentRound].enemies)
             {
-                StartCoroutine(Spawnable.spawnEnemy(enemy.enemy));
+                for (int i = 0; i < enemy.quantity; i++)
+                {
+                    StartCoroutine(Spawnable.spawnEnemy(enemy.enemy));
+                }
             }
-        }
 
-        rounds[currentRound].transition.startCheck();
-        if (rounds[currentRound].transition.hasTransitioned)
+            rounds[currentRound].transition.startCheck();
+            if (rounds[currentRound].transition.hasTransitioned)
+            {
+                currentRound++;
+            }
+        } else
         {
-            currentRound++;
+            introTransition.startCheck();
+            if (introTransition.hasTransitioned)
+            {
+                hasIntroTransition = false;
+                Start();
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (currentRound < rounds.Count)
-        {
-            if (currentRound < rounds.Count)
+        if (!hasIntroTransition) {
+            if ((!looping && currentRound < rounds.Count - 1) || looping)
             {
-                foreach (Transition transition in rounds[currentRound].transitions)
-                {
-                    transition.updateCheck();
-                    if (transition.hasTransitioned)
-                    {
-                        currentRound++;
-
-                        foreach (EnemySpawn enemy in rounds[currentRound].enemies)
-                        {
-                            for (int i = 0; i < enemy.quantity; i++)
-                            {
-                                Spawnable.spawnEnemy(enemy.enemy);
-                            }
-                        }
-                    }
-                }
-            }
-        }*/
-
-        if (currentRound < rounds.Count - 1)
-        {
-            /*foreach (Transition transition in rounds[currentRound].transitions) {
-                transition.updateCheck();
-                if (transition.hasTransitioned)
+                rounds[currentRound].transition.updateCheck();
+                if (rounds[currentRound].transition.hasTransitioned)
                 {
                     currentRound++;
-                }
-            }*/
-            rounds[currentRound].transition.updateCheck();
-            if (rounds[currentRound].transition.hasTransitioned)
-            {
-                currentRound++;
 
-                foreach (EnemySpawn enemy in rounds[currentRound].enemies)
-                {
-                    for (int i = 0; i < enemy.quantity; i++)
-                    {
-                        StartCoroutine(Spawnable.spawnEnemy(enemy.enemy));
+                    if (currentRound > rounds.Count - 1) {
+                        currentRound = 0;
+
+                        foreach (SpawnRound round in rounds)
+                        {
+                            round.reset();
+                        }
                     }
-                }
 
-                rounds[currentRound].transition.startCheck();
+                    foreach (EnemySpawn enemy in rounds[currentRound].enemies)
+                    {
+                        for (int i = 0; i < enemy.quantity; i++)
+                        {
+                            StartCoroutine(Spawnable.spawnEnemy(enemy.enemy));
+                        }
+                    }
+
+                    rounds[currentRound].transition.startCheck();
+                }
+            }
+        } else
+        {
+            introTransition.updateCheck();
+            if (introTransition.hasTransitioned)
+            {
+                hasIntroTransition = false;
+                Start();
             }
         }
     }

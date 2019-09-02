@@ -65,7 +65,7 @@ public class TransitionDetect
     public ClearTransition clear_Trans;
     public ClearTransition score_Trans;
 
-    private Transition[] transitionsChecking
+    public Transition[] transitionsChecking
     {
         get
         {
@@ -170,6 +170,16 @@ public class SpawnRound
     {
         transitions[transitions.Count - 1] = type;
     }*/
+
+    public void reset ()
+    {
+        transition.hasTransitioned = false;
+
+        foreach (Transition i in transition.transitionsChecking)
+        {
+            i.hasTransitioned = false;
+        }
+    }
 }
 
 [System.Serializable]
@@ -192,6 +202,9 @@ public class AdditiveSpawning : MonoBehaviour
 
     public float minFrequency;
     public float maxFrequency;
+
+    public bool hasIntroTransition = false;
+    public TransitionDetect introTransition;
 
     IEnumerator spawnCycle ()
     {
@@ -224,32 +237,60 @@ public class AdditiveSpawning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rounds[currentRound].transition.startCheck();
-        if (rounds[currentRound].transition.hasTransitioned)
+        if (!hasIntroTransition)
         {
-            currentRound++;
-        }
+            foreach (EnemySpawn enemy in rounds[currentRound].enemies)
+            {
+                for (int i = 0; i < enemy.quantity; i++)
+                {
+                    StartCoroutine(Spawnable.spawnEnemy(enemy.enemy));
+                }
+            }
 
-        StartCoroutine(spawnCycle());
+            rounds[currentRound].transition.startCheck();
+            if (rounds[currentRound].transition.hasTransitioned)
+            {
+                currentRound++;
+            }
+        }
+        else
+        {
+            introTransition.startCheck();
+            if (introTransition.hasTransitioned)
+            {
+                hasIntroTransition = false;
+                Start();
+            }
+        }
     }
 
     private void Update()
     {
-        if (currentRound < rounds.Count)
-        {
-            /*foreach (Transition transition in rounds[currentRound].transitions) {
-                transition.updateCheck();
-                if (transition.hasTransitioned)
+        if (!hasIntroTransition) {
+            if (currentRound < rounds.Count)
+            {
+                /*foreach (Transition transition in rounds[currentRound].transitions) {
+                    transition.updateCheck();
+                    if (transition.hasTransitioned)
+                    {
+                        currentRound++;
+                    }
+                }*/
+                rounds[currentRound].transition.updateCheck();
+                if (rounds[currentRound].transition.hasTransitioned)
                 {
                     currentRound++;
-                }
-            }*/
-            rounds[currentRound].transition.updateCheck();
-            if (rounds[currentRound].transition.hasTransitioned)
-            {
-                currentRound++;
 
-                rounds[currentRound].transition.startCheck();
+                    rounds[currentRound].transition.startCheck();
+                }
+            }
+        } else
+        {
+            introTransition.updateCheck();
+            if (introTransition.hasTransitioned)
+            {
+                hasIntroTransition = false;
+                Start();
             }
         }
     }

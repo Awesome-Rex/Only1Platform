@@ -92,6 +92,9 @@ TextureImporter:
   - first:
       213: 8057051550901713791
     second: HealthPoint
+  - first:
+      213: -2773459889484318543
+    second: SquareFrame
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -500,7 +503,7 @@ TextureImporter:
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 8, y: 0, z: 8, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -643,8 +646,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 376
-        height: 376
+        width: 161
+        height: 161
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -801,6 +804,27 @@ TextureImporter:
       bones: []
       spriteID: 456a08deaa14994439a54836336676dc
       internalID: 8057051550901713791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SquareFrame
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 0
+        width: 208
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc98ae2870d68c24a872161851a160fd
+      internalID: -2773459889484318543
       vertices: []
       indices: 
       edges: []

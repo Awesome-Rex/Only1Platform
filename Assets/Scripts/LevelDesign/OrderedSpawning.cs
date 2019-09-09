@@ -4,39 +4,81 @@ using UnityEngine;
 
 public class OrderedSpawning : MonoBehaviour
 {
+    public bool looping = false;
+
     public List<SpawnRound> rounds;
 
     public int currentRound = 0;
 
+    public bool hasIntroTransition = false;
+    public TransitionDetect introTransition;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (!hasIntroTransition) {
+            foreach (EnemySpawn enemy in rounds[currentRound].enemies)
+            {
+                for (int i = 0; i < enemy.quantity; i++)
+                {
+                    StartCoroutine(Spawnable.spawnEnemy(enemy.enemy));
+                }
+            }
 
+            rounds[currentRound].transition.startCheck();
+            if (rounds[currentRound].transition.hasTransitioned)
+            {
+                currentRound++;
+            }
+        } else
+        {
+            introTransition.startCheck();
+            if (introTransition.hasTransitioned)
+            {
+                hasIntroTransition = false;
+                Start();
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentRound < rounds.Count)
-        {
-            if (currentRound < rounds.Count)
+        if (!hasIntroTransition) {
+            if ((!looping && currentRound < rounds.Count - 1) || looping)
             {
-                foreach (Transition transition in rounds[currentRound].transitions)
+                rounds[currentRound].transition.updateCheck();
+                if (rounds[currentRound].transition.hasTransitioned)
                 {
-                    transition.updateCheck();
-                    if (transition.hasTransitioned)
-                    {
-                        currentRound++;
+                    currentRound++;
 
-                        foreach (EnemySpawn enemy in rounds[currentRound].enemies)
+                    if (currentRound > rounds.Count - 1) {
+                        currentRound = 0;
+
+                        foreach (SpawnRound round in rounds)
                         {
-                            for (int i = 0; i < enemy.quantity; i++)
-                            {
-                                Spawnable.spawnEnemy(enemy.enemy);
-                            }
+                            round.reset();
                         }
                     }
+
+                    foreach (EnemySpawn enemy in rounds[currentRound].enemies)
+                    {
+                        for (int i = 0; i < enemy.quantity; i++)
+                        {
+                            StartCoroutine(Spawnable.spawnEnemy(enemy.enemy));
+                        }
+                    }
+
+                    rounds[currentRound].transition.startCheck();
                 }
+            }
+        } else
+        {
+            introTransition.updateCheck();
+            if (introTransition.hasTransitioned)
+            {
+                hasIntroTransition = false;
+                Start();
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -402,6 +403,16 @@ public class PlayerControl : MonoBehaviour
             health.health -= 1;
             GameplayComponents.main.playerHealth.sizeDelta = new Vector2(health.health * 18f, 25f);
             
+            if (health.dead)
+            {
+                GameComponents.main.playerPosition = transform.position - (Camera.main.transform.position + new Vector3(0f, 0f, 10f));
+                GameComponents.main.playerRotation = transform.rotation;
+                GameComponents.main.playerSprite = GetComponentInChildren<SpriteRenderer>().sprite;
+
+                SceneManager.LoadScene("GameOver");
+
+                return;
+            }
 
             jumping = true;
             canJumpHold = false;
@@ -445,7 +456,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //GameObject.Find("Square").transform.position = Tools.RandomPolygonPosition(GameObject.Find("LevelBoundaries").GetComponent<PolygonCollider2D>().points);
-            StartCoroutine(Spawnable.spawnEnemy((Resources.Load("Prefabs/Enemies/EnemyCombinations/MissileQuad") as GameObject).GetComponent<Spawnable>()));
+            //StartCoroutine(Spawnable.spawnEnemy((Resources.Load("Prefabs/Enemies/EnemyCombinations/MissileQuad") as GameObject).GetComponent<Spawnable>()));
         }
     }
 }

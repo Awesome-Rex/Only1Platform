@@ -82,7 +82,7 @@ public class TransitionDrawer : PropertyDrawer
         return actualObject;
     }
 }*/
-
+/*
 [CustomPropertyDrawer(typeof(SpawnRound), true)]
 public class TransitionDrawer : PropertyDrawer
 {
@@ -101,9 +101,9 @@ public class TransitionDrawer : PropertyDrawer
             //Transition temp = property.FindPropertyRelative("transitions").GetArrayElementAtIndex(property.FindPropertyRelative("transitions").arraySize - 1).objectReferenceValue as System.Object as Transition;
             //temp = new TimeTransition();
 
-            (property.FindPropertyRelative("transitions").GetArrayElementAtIndex(property.FindPropertyRelative("transitions").arraySize - 1).objectReferenceValue as System.Object as Transition) = new TimeTransition();
-
-        }
+            (fieldInfo.GetValue(property.serializedObject.targetObject)/*.serializedObject.FindProperty("Element 0")/*.targetObject*/ //as SpawnRound).changeTransition(new TimeTransition());/*(property.FindPropertyRelative("transitions").GetArrayElementAtIndex(property.FindPropertyRelative("transitions").arraySize - 1).objectReferenceValue as System.Object as Transition);*/
+            //property.serializedObject.targetObject as System.Object as SpawnRound
+/*        }
         if (GUI.Button(new Rect(position.x, position.y + EditorGUI.GetPropertyHeight(property) + base.GetPropertyHeight(property, label), position.width, base.GetPropertyHeight(property, label)), "Clear"))
         {
             Debug.Log("Pressed!");
@@ -116,8 +116,10 @@ public class TransitionDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        //return base.GetPropertyHeight(property, label)/* * 2f*/;
+        //return base.GetPropertyHeight(property, label)/* * 2f*/ //;
         //return EditorGUI.GetPropertyHeight(property) + (base.GetPropertyHeight(property, label) * 1f);
-        return base.GetPropertyHeight(property, label) * (property.CountInProperty() + 4f);
+/*        return base.GetPropertyHeight(property, label) * (property.CountInProperty() + 4f);
     }
 }
+
+*/

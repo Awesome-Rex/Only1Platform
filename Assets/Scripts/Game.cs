@@ -15,6 +15,7 @@ public class Game
 
     public List<Level> levels;
 
+    public Level currentLevel;
 
     public Settings settings;
 
@@ -68,7 +69,7 @@ public class Level
         [Grade.Ap] = "A+"
     };
 
-    public string name;
+    public new string name;
 
     public int world;
     public int levelNumber;

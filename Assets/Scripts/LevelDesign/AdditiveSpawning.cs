@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Transition
 {
+    public bool enabled = false;
+
     [SerializeField] public string _transitionType;
     [SerializeField] public string transitionType
     {
@@ -50,6 +52,60 @@ public class Transition
 }
 
 [System.Serializable]
+public class TransitionDetect
+{
+    /*[SerializeField]
+    public System.Tuple<TimeTransition, bool> time_Trans;
+    public System.Tuple<ClearTransition, bool> clear_Trans;
+    public System.Tuple<ScoreTransition, bool> score_Trans;*/
+
+    public bool hasTransitioned = false;
+
+    public TimeTransition time_Trans;
+    public ClearTransition clear_Trans;
+    public ClearTransition score_Trans;
+
+    public Transition[] transitionsChecking
+    {
+        get
+        {
+            return new Transition[] { time_Trans, clear_Trans, score_Trans};
+        }
+    }
+
+    public void startCheck()
+    {
+        foreach (Transition i in transitionsChecking)
+        {
+            if (i.enabled) {
+                i.startCheck();
+                if (i.hasTransitioned)
+                {
+                    hasTransitioned = true;
+                    return;
+                }
+            }
+        }
+    }
+
+    public void updateCheck()
+    {
+        foreach (Transition i in transitionsChecking)
+        {
+            if (i.enabled)
+            {
+                i.updateCheck();
+                if (i.hasTransitioned)
+                {
+                    hasTransitioned = true;
+                    return;
+                }
+            }
+        }
+    }
+}
+
+[System.Serializable]
 public class ClearTransition : Transition
 {
     public override void startCheck()
@@ -73,7 +129,7 @@ public class TimeTransition : Transition
 
     public override void startCheck()
     {
-        Tools.CustomInvoke(() => hasTransitioned = true, wait);
+        GameplayControl.main.StartCoroutine(Tools.CustomInvoke(() => hasTransitioned = true, wait));
     }
 
     public override void updateCheck()
@@ -104,11 +160,26 @@ public class ScoreTransition : Transition
 }
 
 [System.Serializable]
-public struct SpawnRound
+public class SpawnRound
 {
     public List<EnemySpawn> enemies;
     
-    public List<Transition> transitions;
+    public TransitionDetect transition;
+
+    /*public void changeTransition (Transition type)
+    {
+        transitions[transitions.Count - 1] = type;
+    }*/
+
+    public void reset ()
+    {
+        transition.hasTransitioned = false;
+
+        foreach (Transition i in transition.transitionsChecking)
+        {
+            i.hasTransitioned = false;
+        }
+    }
 }
 
 [System.Serializable]
@@ -132,12 +203,13 @@ public class AdditiveSpawning : MonoBehaviour
     public float minFrequency;
     public float maxFrequency;
 
+    public bool hasIntroTransition = false;
+    public TransitionDetect introTransition;
+
     IEnumerator spawnCycle ()
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(minFrequency, maxFrequency + 0.01f));
-
             /*float maxWeight = 0;
 
             for (int i = currentRound; i < rounds.Count; i++)
@@ -154,28 +226,71 @@ public class AdditiveSpawning : MonoBehaviour
             {
                 for (int j = 0; j < i.quantity; j++)
                 {
-                    Spawnable.spawnEnemy(i.enemy);
+                    StartCoroutine(Spawnable.spawnEnemy(i.enemy));
                 }
             }
+
+            yield return new WaitForSeconds(Random.Range(minFrequency, maxFrequency + 0.01f));
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(spawnCycle());
+        if (!hasIntroTransition)
+        {
+            foreach (EnemySpawn enemy in rounds[currentRound].enemies)
+            {
+                for (int i = 0; i < enemy.quantity; i++)
+                {
+                    StartCoroutine(Spawnable.spawnEnemy(enemy.enemy));
+                }
+            }
+
+            rounds[currentRound].transition.startCheck();
+            if (rounds[currentRound].transition.hasTransitioned)
+            {
+                currentRound++;
+            }
+        }
+        else
+        {
+            introTransition.startCheck();
+            if (introTransition.hasTransitioned)
+            {
+                hasIntroTransition = false;
+                Start();
+            }
+        }
     }
 
     private void Update()
     {
-        if (currentRound < rounds.Count)
-        {
-            foreach (Transition transition in rounds[currentRound].transitions) {
-                transition.updateCheck();
-                if (transition.hasTransitioned)
+        if (!hasIntroTransition) {
+            if (currentRound < rounds.Count)
+            {
+                /*foreach (Transition transition in rounds[currentRound].transitions) {
+                    transition.updateCheck();
+                    if (transition.hasTransitioned)
+                    {
+                        currentRound++;
+                    }
+                }*/
+                rounds[currentRound].transition.updateCheck();
+                if (rounds[currentRound].transition.hasTransitioned)
                 {
                     currentRound++;
+
+                    rounds[currentRound].transition.startCheck();
                 }
+            }
+        } else
+        {
+            introTransition.updateCheck();
+            if (introTransition.hasTransitioned)
+            {
+                hasIntroTransition = false;
+                Start();
             }
         }
     }

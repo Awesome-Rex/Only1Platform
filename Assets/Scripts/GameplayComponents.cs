@@ -51,6 +51,11 @@ public class GameplayComponents : MonoBehaviour
 
         platformGhostZone.SetFloat("Length", 4f);
         ammoIcon.SetFloat("Length", 1f);
-        
+
+        StartCoroutine(Tools.CustomInvoke(() =>
+        {
+            levelBoundariesEdge = GameObject.Find("LevelBoundaries").GetComponent<EdgeCollider2D>();
+            levelBoundariesFill = GameObject.Find("LevelBoundaries").GetComponent<PolygonCollider2D>();
+        }, Time.deltaTime));
     }
 }

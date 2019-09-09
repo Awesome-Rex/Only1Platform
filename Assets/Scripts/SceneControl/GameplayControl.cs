@@ -77,5 +77,14 @@ public class GameplayControl : MonoBehaviour
         {
             continueGame();
         }
+
+        /*if (GameplayComponents.main.player.GetComponent<Health>().dead)
+        {
+            GameComponents.main.playerPosition = GameplayComponents.main.player.transform.position - (Camera.main.transform.position + new Vector3(0f, 0f, 10f));
+            GameComponents.main.playerRotation = GameplayComponents.main.player.transform.rotation;
+            GameComponents.main.playerSprite = GameplayComponents.main.player.GetComponentInChildren<SpriteRenderer>().sprite;
+
+            SceneManager.LoadScene("GameOver");
+        }*/
     }
 }

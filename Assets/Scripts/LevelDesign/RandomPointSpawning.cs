@@ -9,12 +9,17 @@ public class RandomPointSpawning : MonoBehaviour
     public float minFrequency;
     public float maxFrequency;
 
+    public bool introFrequency = false;
+
     IEnumerator spawnCycle()
     {
-        while (true)
+        if (introFrequency)
         {
             yield return new WaitForSeconds(Random.Range(minFrequency, maxFrequency + 0.01f));
+        }
 
+        while (true)
+        {
             foreach (EnemySpawn i in rounds[Random.Range(0, rounds.Count)].enemies)
             {
                 for (int j = 0; j < i.quantity; j++)
@@ -24,6 +29,8 @@ public class RandomPointSpawning : MonoBehaviour
                     StartCoroutine(Spawnable.spawnEnemy(i.enemy));
                 }
             }
+
+            yield return new WaitForSeconds(Random.Range(minFrequency, maxFrequency + 0.01f));
         }
     }
 

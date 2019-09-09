@@ -65,6 +65,8 @@ public class Spawnable : MonoBehaviour
             }
         }
 
+        replacement.transform.SetParent(GameplayComponents.main.enemyHolder.transform);
+
         yield return new WaitForSeconds(target.delay);
 
         Destroy(replacement.gameObject);

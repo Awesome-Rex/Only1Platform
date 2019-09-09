@@ -52,10 +52,17 @@ public class MainMenuControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mainMenuState == MainMenuState.Title && (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)) && canTransition)
-        {
-            mainMenuState = MainMenuState.Selection;
-            animator.SetTrigger("Switch");
+        if ((Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))) {
+            if (mainMenuState == MainMenuState.Title && canTransition)
+            {
+                mainMenuState = MainMenuState.Selection;
+                animator.SetTrigger("Switch");
+            } else if (mainMenuState == MainMenuState.Title && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f && !canTransition)
+            {
+                //animator.SetFloat("TimeSkip", 1f);
+                animator.Play("Intro", 0, 1f);
+                canTransition = true;
+            }
         }
     }
 }

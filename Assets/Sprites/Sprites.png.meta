@@ -670,8 +670,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 161
-        height: 161
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -836,10 +836,10 @@ TextureImporter:
       name: SquareFrame
       rect:
         serializedVersion: 2
-        x: 176
+        x: 192
         y: 0
-        width: 208
-        height: 208
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 16, y: 16, z: 16, w: 16}

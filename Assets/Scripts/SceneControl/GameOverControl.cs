@@ -7,7 +7,6 @@ public class GameOverControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         Camera.main.orthographicSize = GameComponents.main.cameraZoom;
 
         Transform playerPieces = GameObject.Find("PlayerPieces").transform;

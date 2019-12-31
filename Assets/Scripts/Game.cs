@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public enum Grade
 {
@@ -48,6 +49,31 @@ public class Game
     }
 }
 
+public class Settings
+{
+    public float SFXVolume;
+    public float musicVolume;
+
+    public bool controlUI;
+
+    public Settings() {
+        SFXVolume = 1f;
+        musicVolume = 1f;
+
+        controlUI = true;
+
+
+    }
+}
+
+public class SceneTransitionData
+{
+    public float cameraZoom;
+    public Vector3 playerPosition;
+    public Quaternion playerRotation;
+    public Sprite playerSprite;
+}
+
 public class Level
 {
     public Dictionary<Grade, string> gradeToText = new Dictionary<Grade, string>
@@ -69,31 +95,29 @@ public class Level
         [Grade.Ap] = "A+"
     };
 
-    public new string name;
-
-    public int world;
-    public int levelNumber;
-
     public int highScore;
+    public float time;
 
     public enum LevelState { Passed, Unlocked, Locked }
     public LevelState levelState;
 
+    public LevelData levelData;
+
 }
 
-public class Settings
+[System.Serializable]
+public class LevelData
 {
-    public float SFXVolume;
-    public float musicVolume;
+    public string name;
+    public Scene scene;
 
-    public bool controlUI;
+    public int world;
+    public int levelNumber;
 
-    public Settings() {
-        SFXVolume = 1f;
-        musicVolume = 1f;
+    public Color levelColour;
+    public Color borderColour;
 
-        controlUI = true;
-
-
-    }
+    public Vector2[] levelBoundsPoints;
+    public Vector2[] enemyBoundsPoints;
 }
+
